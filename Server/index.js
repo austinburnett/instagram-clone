@@ -1,11 +1,11 @@
-const express = require("express")
-const app = express()
-const port = 3000
-
-app.get("/", (req, res) => {
-    res.send("Hello World! Yes, we did it!")    
-})
+const express = require("express");
+const routes = require("./routes/routes");
+const app = express();
+const port = 3000;
 
 app.listen(port, () => {
-    console.log(`Listening on port ${port}`)
-})
+    console.log(`Listening on port ${port}`);
+});
+
+// Initial route
+app.use("/", routes);
