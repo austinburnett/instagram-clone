@@ -10,6 +10,13 @@ A lightweight web application with most of the features that Instagram has.
 
 ### Dependencies
 - [ExpressJS](https://expressjs.com/)
+- [NodeJS](https://nodejs.org/en/)
 
 ### Roadmap
 - [ ] Initial Backend Setup
+    - [x] Setup npm for backend
+    - [ ] Create Web Server
+    - [ ] Create Models directory
+    - [ ] Create Routes directory
+- [ ] Initial Frontend Setup
+
