@@ -15,7 +15,7 @@ A lightweight web application with most of the features that Instagram has.
 ### Roadmap
 - [ ] Initial Backend Setup
     - [x] Setup npm for backend
-    - [ ] Create Web Server
+    - [x] Create Web Server
     - [ ] Create Models directory
     - [ ] Create Routes directory
 - [ ] Initial Frontend Setup
