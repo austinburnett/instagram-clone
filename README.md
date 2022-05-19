@@ -10,7 +10,8 @@ A lightweight web application with most of the features that Instagram has.
 
 ### Dependencies
 - [ExpressJS](https://expressjs.com/)
-- [NodeJS](https://nodejs.org/en/)
+- [Nodemon]
+- [Pug]
 
 ### Roadmap
 - [ ] Initial Backend Setup
@@ -18,5 +19,14 @@ A lightweight web application with most of the features that Instagram has.
     - [x] Create Web Server
     - [x] Create Models directory
     - [x] Create Routes directory
+    - [x] Create views directory
+    - [ ] Setup mongoDB
+    - [ ] Render pug template with backend data
+
+- [ ] Complete Backend?
+    - [ ] Create Restful api
+
 - [ ] Initial Frontend Setup
+    - [ ] Create login page
+    - [ ] Create main application page
 

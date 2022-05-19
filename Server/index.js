@@ -7,5 +7,8 @@ app.listen(port, () => {
     console.log(`Listening on port ${port}`);
 });
 
+// Template Engine Setup
+app.set("views", "./views");
+
 // Initial route
 app.use("/", routes);
