@@ -12,6 +12,7 @@ A lightweight web application with most of the features that Instagram has.
 - [ExpressJS](https://expressjs.com/)
 - [Nodemon]
 - [Pug]
+- [MongoDB]
 
 ### Roadmap
 - [ ] Initial Backend Setup
@@ -21,12 +22,16 @@ A lightweight web application with most of the features that Instagram has.
     - [x] Create Routes directory
     - [x] Create views directory
     - [ ] Setup mongoDB
+        - [ ] Connect to DB
+        - [ ] Create a reusable connection to DB
     - [ ] Render pug template with backend data
-
-- [ ] Complete Backend?
+- [ ] Backend Complete?
+    - [ ] Add Authentication middleware to redirect user if not currently logged in
+    - [ ] Create DB Schemas
+        - [ ] Create User Schema
     - [ ] Create Restful api
-
-- [ ] Initial Frontend Setup
+- [ ] Frontend Complete?
     - [ ] Create login page
+    - [ ] Create register page
     - [ ] Create main application page
 
