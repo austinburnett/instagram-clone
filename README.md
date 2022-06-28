@@ -13,20 +13,27 @@ A lightweight web application with most of the features that Instagram has.
 - [Nodemon]
 - [Pug]
 - [MongoDB]
+- [Mongoose]
+- [Dotenv]
 
 ### Roadmap
-- [ ] Initial Backend Setup
+- [x] Initial Backend Setup
     - [x] Setup npm for backend
     - [x] Create Web Server
     - [x] Create Models directory
     - [x] Create Routes directory
     - [x] Create views directory
-    - [ ] Setup mongoDB
-        - [ ] Connect to DB
-        - [ ] Create a reusable connection to DB
-    - [ ] Render pug template with backend data
+    - [x] Setup mongoDB
+        - [x] Connect to DB
+        - [x] Create a reusable asynchronous connection to DB
+            - [x] Create a .env file to store confidential DB connection information
+            - [x] Create a util directory
+            - [x] Create a mongodb utility module
+            - [x] Close all DB connections when the backend process has stopped
 - [ ] Backend Complete?
     - [ ] Add Authentication middleware to redirect user if not currently logged in
+    - [ ] Server Side Rendering Complete?
+        - [ ] Render pug template with backend data
     - [ ] Create DB Schemas
         - [ ] Create User Schema
     - [ ] Create Restful api
