@@ -38,33 +38,35 @@ A lightweight web application with most of the features that Instagram has.
         - [ ] Create layout directory inside /views
             -[ ] Create main.pug for other templates to extend off of 
         - [x] Create login template
-            - [x] Check if user exists in db 
+            - [] Add styling
         - [x] Create Register template
             - [x] Make sure passwords match
-            - [x] Check if email is in use
-        - [x] Create main application template
+            - [  ] Add styling
+        - [x] Create home page template
         - [ ] Create user page template
     - [ ] Controllers
+        - [ ] Add middleware to redirect user if not currently logged in
         - [x] Create controller to handle user business logic
         - [x] Create controller to handle post business logic
         - [ ] User controller
             - [x] Handle login form
+                - [x] Check if user exists in db 
+                - [  ] Reroute until succesful login
             - [x] Handle login page 
             - [x] Handle register form
+                - [x] Check if email is in use
             - [x] Handle register page
             - [ ] Handle operations for single user
                 - [ ] Delete user
                 - [ ] Update user
                 - [ ] Get user
                 - [x] Createuser
-    - [ ] Middleware
-        - [ ] Add middleware to redirect user if not currently logged in
-    - [ ] Authentication
-        - [x] Use a hashing algorithm to hash confidential info
-        - [x] Query using user's model and confirm credentials
-    - [ ] Create DB Schemas
+    - [ ] Models 
         - [x] Create User Schema
         - [x] Create Post Schema
+        - [x] Authentication
+            - [x] Use a hashing algorithm to hash confidential info
+            - [x] Query using user's model and confirm credentials
     - [ ] Create Restful api
         - [x] Create an api folder in routes to organize api routes
         - [x] Create api endpoints
@@ -73,8 +75,8 @@ A lightweight web application with most of the features that Instagram has.
             - [x] Create post routes to handle crud operations 
         - [ ] CRUD operations on users
         - [ ] CRUD operations on posts
-    - [ ] Authorization (Session state)
-        - [ ] Add authorization using JWT 
+        - [ ] Authorization (Session state) (Secure endponts)
+            - [ ] Add authorization using JWT 
 - [ ] Frontend Complete?
 - [ ] Extensions?
     - [ ] Create a quickstart guide to allow for easy demonstration
