@@ -1,5 +1,15 @@
 html 
-    head 
-        title= title 
+  head 
+    title InstaClone
     body 
-        h1= message
+      h1 Login
+        form(action="/api/users/login" method="POST" encytype="form-data-multipart")
+            label(for="email") Enter Email:
+            input(type="text" name="email" placeholder="user@gmail.com")
+            br 
+            br
+            label(for="pass") Enter passoword:
+            input(type="text" name="pass")
+            br
+            br
+            button Submit

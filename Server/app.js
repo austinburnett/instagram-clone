@@ -16,7 +16,7 @@ app.listen(process.env.PORT, () => {
 app.set("views", "./views");
 
 // Initial route
-app.use("", routes);
+app.use("/", routes);
 
 // Connect to db
 mongoUtil.connect(() => {

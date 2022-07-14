@@ -10,11 +10,12 @@ A lightweight web application with most of the features that Instagram has.
 
 ### Dependencies
 - [ExpressJS](https://expressjs.com/)
-- [Nodemon]
-- [Pug]
-- [MongoDB]
-- [Mongoose]
-- [Dotenv]
+- [Nodemon] (https://www.npmjs.com/package/nodemon/)
+- [Pug] (https://pugjs.org/api/getting-started.html)
+- [MongoDB] (https://mongodb.github.io/node-mongodb-native/api-generated/mongoclient.html)
+- [Mongoose] (https://mongoosejs.com/)
+- [Dotenv] (https://www.npmjs.com/package/dotenv)
+- [Formidable] (https://www.npmjs.com/package/formidable)
 
 ### Roadmap
 - [x] Initial Backend Setup
@@ -31,14 +32,95 @@ A lightweight web application with most of the features that Instagram has.
             - [x] Create a mongodb utility module
             - [x] Close all DB connections when the backend process has stopped
 - [ ] Backend Complete?
-    - [ ] Add Authentication middleware to redirect user if not currently logged in
-    - [ ] Server Side Rendering Complete?
-        - [ ] Render pug template with backend data
+    - [x] Require a multipart body parser for processing form data
+    - [ ] Server Side Rendering
+        - [x] Render pug template with backend data
+        - [ ] Create layout directory inside /views
+            -[ ] Create main.pug for other templates to extend off of 
+        - [x] Create login template
+            - [x] Check if user exists in db 
+        - [x] Create Register template
+            - [x] Make sure passwords match
+            - [x] Check if email is in use
+        - [x] Create main application template
+        - [ ] Create user page template
+    - [ ] Controllers
+        - [x] Create controller to handle user business logic
+        - [x] Create controller to handle post business logic
+        - [ ] User controller
+            - [x] Handle login form
+            - [x] Handle login page 
+            - [x] Handle register form
+            - [x] Handle register page
+            - [ ] Handle operations for single user
+                - [ ] Delete user
+                - [ ] Update user
+                - [ ] Get user
+                - [x] Createuser
+    - [ ] Middleware
+        - [ ] Add middleware to redirect user if not currently logged in
+    - [ ] Authentication
+        - [x] Use a hashing algorithm to hash confidential info
+        - [x] Query using user's model and confirm credentials
     - [ ] Create DB Schemas
-        - [ ] Create User Schema
+        - [x] Create User Schema
+        - [x] Create Post Schema
     - [ ] Create Restful api
+        - [x] Create an api folder in routes to organize api routes
+        - [x] Create api endpoints
+            - [x] Create users folder in routes/api/ for all endpoints accessing the users' resources
+            - [x] Create user routes to handle crud operations
+            - [x] Create post routes to handle crud operations 
+        - [ ] CRUD operations on users
+        - [ ] CRUD operations on posts
+    - [ ] Authorization (Session state)
+        - [ ] Add authorization using JWT 
 - [ ] Frontend Complete?
-    - [ ] Create login page
-    - [ ] Create register page
-    - [ ] Create main application page
+- [ ] Extensions?
+    - [ ] Create a quickstart guide to allow for easy demonstration
+    - [ ] Create a video demonstrating the core functionalities of InstaClone
+    - [ ] Docker support
+    - [ ] Cloud service support
+    - [ ] CI/CD with gitlab or github action
+    - [ ] Websocket for private messages
+    - [ ] Caching
+    - [ ] Load balancing/testing
+    - [ ] Write a blog about how to replicate this app / teach about backend developement
+    - [ ] Create bots that post random, funny images scraped from the web
+        - [ ] Let bots post random star wars quotes on posted, random, funny images
+        - [ ] execute this script on a time cycle
 
+### Architecture
+         ----------------
+         Browser/Client
+         ----------------
+                |
+                |
+               \|/
+            ---------
+            Rest Api
+            ---------
+                |
+                |
+               \|/
+      ------------------------
+      Application (Web Server)
+      ------------------------
+                |
+                |
+               \|/
+           -----------
+           Controllers
+           -----------
+             /      \
+            /        \
+          \|/        \|/
+       -------       ------
+       Models        Views
+       -------       ------
+         |
+         |
+        \|/
+       ----
+       DB
+       ----

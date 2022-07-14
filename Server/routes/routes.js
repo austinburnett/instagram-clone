@@ -1,10 +1,19 @@
 const express = require("express");
 const router = express.Router();
-const login = require("./login");
+const usersRoutes = require("./api/user");
 
-// Login Page Route
-router.use("/login", login);
+/**
+ * Home Page Routing
+ * TODO: if not logged in
+ * res.redirect() to redirect user until logged in
+ * once logged in, pass to other routes to handle
+ */
 
-// https://stackoverflow.com/questions/40294870/module-exports-vs-export-default-in-node-js-and-es6
-// https://stackoverflow.com/questions/27465850/typeerror-router-use-requires-middleware-function-but-got-a-object
+router.get("/", (req, res) => {
+    res.send("This is the home page.");
+});
+
+// Mount users Routes Middleware
+router.use("/api/users", usersRoutes);
+
 module.exports = router;
