@@ -2,39 +2,32 @@ const mongoose = require("mongoose");
 const post = require("./postModel");
 const argon2 = require("argon2");
 
-/**
- * What does our user need
- * id is included by default mongoose
- * email/username
- * authenticate: ability to hash password & check credentials
- * hashed password + salt?
- * ability to create a post
- * ability to delete a post
- * ability to update a post
- * update password
- * posts associated with userId
- * ability to like a post
- * ability to comment on a post
- * add friend
- * remove friend
- * view all friends
+/*
+ * Todo:
+ * Define method for user to be able to post a post and comment
+ * We could create a instance function for each document to
+ * create a comment and post
  */
-
-// TODO: add validators for each property/field
 const userSchema = new mongoose.Schema({
-  email: {
-    type: String
+  username: {
+    type: String,
+    required: true
   },
-  password: String,
+  email: {
+    type: String,
+    required: true
+  },
+  password: {
+    type: String,
+    required: true
+  },
 });
-
-// NOTE: methods must be added to the schema before compiling it with mongoose.model()
-// Do not declare methods using ES6 arrow functions (=>). Arrow functions explicitly prevent binding this, so your method will not have access to the document 
 
 /**
  * argon2id
  * @desc Applies a hash function to user's password.
- * @ret { String } Encoded-hash value
+ * @param { pass } user's password
+ * @ret { String } Encoded-hash value + salt
  */
 userSchema.statics.argon2id = async function(pass) {
   let hash;
@@ -49,6 +42,8 @@ userSchema.statics.argon2id = async function(pass) {
 /**
  * authenticate 
  * @desc Verify the hash matches the password entered 
+ * @param { pass } user's password
+ * @param { hash } return value of argon2id
  * @ret { Boolean }
  */ 
 userSchema.statics.authenticate = async function(hash, pass) {
@@ -66,16 +61,8 @@ userSchema.statics.authenticate = async function(hash, pass) {
   } 
 }
 
-/**
- * sliceEncodedHash 
- * @desc Breaks down encoded-hash for storage in database
- * @params encodedHash The return value from user.argon2id();
- * across multiple fields.
- * @ret 
- */ 
-userSchema.statics.sliceEncodedHash = async function(encodedHash) {
-
-}
+// NOTE: methods must be added to the schema before compiling it with mongoose.model()
+// Do not declare methods using ES6 arrow functions (=>). Arrow functions explicitly prevent binding this, so your method will not have access to the document 
 
 // Compile Schema && Export model
 const user = mongoose.model("users", userSchema); 

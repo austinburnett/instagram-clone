@@ -1,36 +1,48 @@
 const formidable = require("formidable");
 const user = require("../models/userModel");
+let jwt = require("jsonwebtoken");
+//const randomBytes = require("node:crypto").randomBytes;
+
 /**
- * loginController.js
- * @desc Handles login requests
- * @export user middleware
+ * userController.js
+ * @desc Export functions that handles req/res logic for users
  */ 
 
 /** 
  * loginForm
- * TODO: 
+ * @desc Handles login for a user 
+ * @returns { Token } JWT on success   
  */
 exports.loginForm = (req, res, next) => {    
   const form = formidable();
-  form.parse(req, async (err, fields) => {
-    if(err) {
-      console.err(err);
+  form.parse(req, async (formErr, fields) => {
+    if(formErr) {
+      console.err(formErr);
       return;
     }
+    
     try {
-      // Query users 
-      const currUser = await user.findOne({email:`${ fields.email }`});
+      const userFound = await user.findOne({email:`${ fields.email }`});
 
-      // User doesn't exist
-      if(!currUser) { res.send("user not found"); }
+      if(!userFound) { 
+        res.sendStatus(401);
+      }
 
-      else if(await user.authenticate(currUser.password, fields.pass)) {
-        // user is authenticated
-        res.send("authenticated");
+      else if(await user.authenticate(userFound.password, fields.pass)) {
+        
+        const token = jwt.sign({
+          audience: `${ userFound._id }`,
+          issuer: "InstaClone",
+        }, process.env.SECRET, {
+          algorithm: "HS256",
+          expiresIn: "1 hour",
+        });
+        res.json( { token } );
+        //res.json( { userFound } );
       }
       else {
-        // user not authenticated
-        res.send("not authenticated");
+        // TODO: Redirect to home page which will prompt login if token is not sent 
+        res.sendStatus(401);
       } 
     } catch(err) {
       console.error(err);
@@ -44,31 +56,24 @@ exports.login = (req, res) => {
 
 /**
  * registerForm
- * TODO: 
- * send error if email in use
- * @improvement Improve the password validation so that 
- * you don't have to click off of the input for the button 
- * to be enabled
+ * @desc Handles creating a new user. 
  */
 exports.registerForm = (req, res, next) => {    
   const form = formidable();
-  form.parse(req, async (err, fields) => {
-    if(err) {
-      console.err(err);
+  form.parse(req, async (formErr, fields) => {
+    if(formErr) {
+      console.err(formErr);
       return;
     }
 
-    // Verify email is not in use
     const emailInUse = await user.findOne({email: `${ fields.email }`});
+    
     if(emailInUse) {
       res.send(`User found with the same email address: ${ emailInUse.email }`);
     }
     else {
-      // Hash password 
       const hash = await user.argon2id(`${ fields.pass }`);
-
-      // Store new user in db 
-      const newUser = new user({ email:`${ fields.email }`, password:`${ hash }`});
+      const newUser = new user({ email:`${ fields.email }`, username: `${ fields.username }`, password:`${ hash }`});
       newUser.save();
       res.send("Stored in db");
     }  

@@ -10,12 +10,14 @@ A lightweight web application with most of the features that Instagram has.
 
 ### Dependencies
 - [ExpressJS](https://expressjs.com/)
-- [Nodemon] (https://www.npmjs.com/package/nodemon/)
-- [Pug] (https://pugjs.org/api/getting-started.html)
-- [MongoDB] (https://mongodb.github.io/node-mongodb-native/api-generated/mongoclient.html)
-- [Mongoose] (https://mongoosejs.com/)
-- [Dotenv] (https://www.npmjs.com/package/dotenv)
-- [Formidable] (https://www.npmjs.com/package/formidable)
+- [Nodemon](https://www.npmjs.com/package/nodemon/)
+- [Pug](https://pugjs.org/api/getting-started.html)
+- [Mongoose](https://mongoosejs.com/)
+- [Dotenv](https://www.npmjs.com/package/dotenv)
+- [Formidable](https://www.npmjs.com/package/formidable)
+- [jsonwebtoken]()
+- [argon2]()
+- [express-jwt]()
 
 ### Roadmap
 - [x] Initial Backend Setup
@@ -33,41 +35,45 @@ A lightweight web application with most of the features that Instagram has.
             - [x] Close all DB connections when the backend process has stopped
 - [ ] Backend Complete?
     - [x] Require a multipart body parser for processing form data
-    - [ ] Server Side Rendering
-        - [x] Render pug template with backend data
-        - [ ] Create layout directory inside /views
-            -[ ] Create main.pug for other templates to extend off of 
-        - [x] Create login template
-            - [] Add styling
-        - [x] Create Register template
-            - [x] Make sure passwords match
-            - [  ] Add styling
-        - [x] Create home page template
-        - [ ] Create user page template
     - [ ] Controllers
-        - [ ] Add middleware to redirect user if not currently logged in
+        - [x] Add middleware to redirect user if not currently logged in
         - [x] Create controller to handle user business logic
         - [x] Create controller to handle post business logic
+        - [x] Sent correct HTTP error codes back to client 
         - [ ] User controller
             - [x] Handle login form
                 - [x] Check if user exists in db 
-                - [  ] Reroute until succesful login
-            - [x] Handle login page 
+                - [ ] Send http status code until succesful login
+                - [x] Use node cryto to sign JWT & Store secret in dotenv file
+                      secret will be 128 bits
+            - [x] Handle login form 
             - [x] Handle register form
                 - [x] Check if email is in use
             - [x] Handle register page
             - [ ] Handle operations for single user
                 - [ ] Delete user
                 - [ ] Update user
-                - [ ] Get user
-                - [x] Createuser
-    - [ ] Models 
+                - [x] Get user
+                - [x] Create user
+        - [ ] Post controller
+            - [x] Handle post form
+            - [ ] Handle operations for single post 
+                - [ ] Delete post
+                - [ ] Update post
+                - [x] Get post
+                - [x] Create post
+            - [ ] Handle operations for single comment 
+                - [ ] Delete comment
+                - [ ] Update comment
+                - [x] Get comment
+                - [x] Create comment
+    - [x] Models 
         - [x] Create User Schema
         - [x] Create Post Schema
         - [x] Authentication
             - [x] Use a hashing algorithm to hash confidential info
             - [x] Query using user's model and confirm credentials
-    - [ ] Create Restful api
+    - [ ] Restful api
         - [x] Create an api folder in routes to organize api routes
         - [x] Create api endpoints
             - [x] Create users folder in routes/api/ for all endpoints accessing the users' resources
@@ -75,17 +81,17 @@ A lightweight web application with most of the features that Instagram has.
             - [x] Create post routes to handle crud operations 
         - [ ] CRUD operations on users
         - [ ] CRUD operations on posts
-        - [ ] Authorization (Session state) (Secure endponts)
-            - [ ] Add authorization using JWT 
-- [ ] Frontend Complete?
+        - [x] Authorization (Session state) (Secure endponts)
+            - [x] Add authorization using JWT(HMAC) 
 - [ ] Extensions?
     - [ ] Create a quickstart guide to allow for easy demonstration
     - [ ] Create a video demonstrating the core functionalities of InstaClone
-    - [ ] Docker support
+    - [ ] Docker support / Kubernetes
     - [ ] Cloud service support
+    - [ ] Unit testing
     - [ ] CI/CD with gitlab or github action
     - [ ] Websocket for private messages
-    - [ ] Caching
+    - [ ] Caching with redis
     - [ ] Load balancing/testing
     - [ ] Write a blog about how to replicate this app / teach about backend developement
     - [ ] Create bots that post random, funny images scraped from the web
