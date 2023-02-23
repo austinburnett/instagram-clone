@@ -32,29 +32,73 @@ exports.createPost = (req, res) => {
     }
   });
   // 201 status code created
-  res.sendStatus(201);
+  res.status(201).send("Post created");
 }
 
 // Get Post 
-exports.getPost = (req, res) => {
-  // We'll need the post id from the client
-  // ie front end functionality will get us this?
+exports.getPost = async (req, res) => {
+    try{
+        const queryPost = await post.findById(req.params.id);
+        res.json({ queryPost });
+    }catch(err){
+        console.error(err);
+        res.sendStatus(404);
+    } finally{
+        console.log("found");
+    }
 }
 
-// Read All Recent Post
-exports.getAllPost = async(req, res) => {
+// Get All Recent Post
+exports.getAllPost = async (req, res) => {
   const posts = await post.find();
-  res.json({posts});
-}
-// Update/replace Post
-exports.postPost = (req, res) => {
+  res.json({ posts });
 }
 
 // Update a part of the Post
-exports.putPost = (req, res) => {
-  // need a post id to edit here
+//
+// 1. User initiates a get request to /posts/:id/edit
+// 2. sends back a form with info predefined
+// 3. once done press button and submit put request to posts/:id
+exports.patchPost = async (req, res) => {
+  const form = formidable();
+  form.parse(req, async (formErr, fields) => {
+    if(formErr) {
+      console.err(formErr);
+      return;
+    }
+    
+    try {
+      // Maybe check if document exists? Or verify post is actually updated
+        post.findByIdAndUpdate(req.params.id, {
+            title: `${ fields.title }`,
+            content: `${ fields.content }`,
+            caption: `${ fields.caption }`,
+        }, (post) => {
+            // Needs callback to execute query
+            // this still gives null
+            console.log(post);
+        });
+
+        res.status(201).send("Post updated");
+        console.log("Post updated with id:" + " " + req.params.id);
+      
+    } catch(err) {
+      console.error(err);
+      res.sendStatus(500);
+    }
+  });
 }
 
 // Delete Post
-exports.deletePost = (req, res) => {
+exports.deletePost = async (req, res) => {
+    try{
+        // need to check if post was actually found
+        await post.findByIdAndDelete(req.params.id);
+        res.status(200).send("Post deleted");
+    }catch(err){
+        console.error(err);
+        res.sendStatus(404);
+    } finally{
+        console.log("Post deleted");
+    }
 }

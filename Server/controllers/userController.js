@@ -25,7 +25,7 @@ exports.loginForm = (req, res, next) => {
       const userFound = await user.findOne({email:`${ fields.email }`});
 
       if(!userFound) { 
-        res.sendStatus(401);
+        res.status(401).send("User not found");
       }
 
       else if(await user.authenticate(userFound.password, fields.pass)) {
@@ -38,10 +38,8 @@ exports.loginForm = (req, res, next) => {
           expiresIn: "1 hour",
         });
         res.json( { token } );
-        //res.json( { userFound } );
       }
       else {
-        // TODO: Redirect to home page which will prompt login if token is not sent 
         res.sendStatus(401);
       } 
     } catch(err) {
@@ -87,18 +85,61 @@ exports.register = (req, res) => {
 
 exports.getUsers = async (req, res) => {
   const users = await user.find();
-  res.json({users});
+  res.json({ users });
 }
 
-exports.getUser = (req, res) => {
-  res.send("getUser needs to be completed");
+exports.getUser = async (req, res) => {
+    try{
+        const queryUser = await user.findById(req.params.id);
+        res.json({ queryUser });
+    }catch(error){
+        console.error(error);
+        res.sendStatus(404);
+    }
 }
 
 exports.updateUser = (req, res) => {
-  res.send("updateUser needs to be completed");
+  // Allow password to be changed
+  // we'll have to hash it again
+  // also we'll need email verification, username verification etc
+  const form = formidable();
+  form.parse(req, async (formErr, fields) => {
+    if(formErr) {
+      console.err(formErr);
+      return;
+    }
+    
+    try {
+      // Maybe check if document exists? Or verify post is actually updated
+        user.findByIdAndUpdate(req.params.id, {
+            email: `${ fields.email}`,
+            username: `${ fields.username }`,
+            //pass: `${ fields.password }`,
+        }, (user) => {
+            // Needs callback to execute query
+            // this still gives null
+            console.log(user);
+        });
+
+        res.status(201).send("User updated");
+        console.log("User updated with id:" + " " + req.params.id);
+      
+    } catch(err) {
+      console.error(err);
+      res.sendStatus(500);
+    }
+  });
 }
 
-exports.deleteUser = (req, res) => {
-  res.send("deleteUser needs to be completed");
+exports.deleteUser = async (req, res) => {
+    try{
+        await user.findByIdAndDelete(req.params.id);
+        res.status(200).send("User deleted");
+    }catch(err){
+        console.error(err);
+        res.sendStatus(404);
+    } finally{
+        console.log("User deleted");
+    }
 }
 
