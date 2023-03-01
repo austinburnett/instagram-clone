@@ -16,7 +16,6 @@ exports.createPost = (req, res) => {
     }
     
     try {
-      // try to create post here
       const newPost = new post({
         title: `${ fields.title }`,
         user_id: req.username,
@@ -55,11 +54,7 @@ exports.getAllPost = async (req, res) => {
 }
 
 // Update a part of the Post
-//
-// 1. User initiates a get request to /posts/:id/edit
-// 2. sends back a form with info predefined
-// 3. once done press button and submit put request to posts/:id
-exports.patchPost = async (req, res) => {
+exports.updatePost = async (req, res) => {
   const form = formidable();
   form.parse(req, async (formErr, fields) => {
     if(formErr) {
@@ -73,10 +68,9 @@ exports.patchPost = async (req, res) => {
             title: `${ fields.title }`,
             content: `${ fields.content }`,
             caption: `${ fields.caption }`,
-        }, (post) => {
+        }, (err, result) => {
             // Needs callback to execute query
-            // this still gives null
-            console.log(post);
+            console.log(result);
         });
 
         res.status(201).send("Post updated");

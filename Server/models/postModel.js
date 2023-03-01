@@ -1,6 +1,22 @@
 const mongoose = require("mongoose");
 
 /*
+ * commentSchema
+ * @desc Contains comment data for embedding in Post Model
+ */
+const commentSchema = new mongoose.Schema({
+    user_id: {
+        type: mongoose.ObjectId,
+        required: true
+    },
+    text: {
+        type: String,
+        minLength: 1,
+        required: true,
+    }
+});
+
+/*
  * postSchema
  * @desc Contains a reference to the posts collection in db
  * @export Class that allows us to interface with our posts
@@ -23,6 +39,7 @@ const mongoose = require("mongoose");
       type: String,
       required: true,
       // Remember this is not stored in mongodb
+        // i should just delete this
       get: (c) => `${ contentPath }${ c }`
     },
     caption: {
@@ -30,13 +47,10 @@ const mongoose = require("mongoose");
       minLength: 1,
       required: true
     },
-    comments: [{
+    comments: {
       type: Array,
-      text: String,
-      minLength: 1,
-      user_id: mongoose.ObjectId,
-      ref: "users"
-    }],
+      of: commentSchema
+    },
     meta: {
       date: {
         type: Date,
@@ -44,7 +58,6 @@ const mongoose = require("mongoose");
       },
       upvotes: {
         type: Number,
-        // lets  see if this causes issue, just added
         default: 0,
         user_id: mongoose.ObjectId,
         ref: "users"

@@ -23,7 +23,7 @@ exports.isAuthenticated = (req, res, next) => {
       } 
       else {
         req.username = decoded.audience;
-        console.log("user_id: " + req.username);
+        console.log("user_id from auth middleware in routes: " + req.username);
       } next();
     });
   } else { res.sendStatus(401); } 
