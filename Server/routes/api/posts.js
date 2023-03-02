@@ -22,6 +22,9 @@ router.patch("/:id", postController.updatePost);
 // Delete post 
 router.delete("/:id", postController.deletePost);
 
+// Upvote post
+router.patch("/:id/upvote", postController.upvote);
+
 // Comments
 router.use("/:id/comments", (req, res, next) => {
     console.log("from posts routes middleware", req.params);

@@ -37,8 +37,8 @@ exports.createPost = (req, res) => {
 // Get Post 
 exports.getPost = async (req, res) => {
     try{
-        const queryPost = await post.findById(req.params.id);
-        res.json({ queryPost });
+        const currPost = await post.findById(req.params.id);
+        res.json({ currPost });
     }catch(err){
         console.error(err);
         res.sendStatus(404);
@@ -69,7 +69,7 @@ exports.updatePost = async (req, res) => {
             content: `${ fields.content }`,
             caption: `${ fields.caption }`,
         }, (err, result) => {
-            // Needs callback to execute query
+            // Needs callback to execute 
             console.log(result);
         });
 
@@ -91,8 +91,41 @@ exports.deletePost = async (req, res) => {
         res.status(200).send("Post deleted");
     }catch(err){
         console.error(err);
-        res.sendStatus(404);
-    } finally{
-        console.log("Post deleted");
-    }
+        res.status(404).send("Error with deleting post");
+    } }
+
+// Upvote Post
+exports.upvote = async (req, res) => {
+    try{
+        post.findOne({
+            _id: req.params.id
+        }, async (err, result) => {
+            if(err){
+                console.error(err);
+            }
+
+            let voters = result.meta.upvotes.voters;
+            let foundUser = 0;
+            for(voter in voters){
+                if(voters[voter] == req.username){
+                    foundUser = 1;
+                }
+            }
+            
+            if(foundUser){
+                result.meta.upvotes.votes -= 1;
+                result.meta.upvotes.voters.pull(req.username);
+            }
+            else{
+                result.meta.upvotes.votes += 1;
+                result.meta.upvotes.voters.push(req.username);
+            }
+
+            await result.save();
+            res.status(200).send("Post upvotes updated");
+        });
+    } catch(err){
+        console.error(err);
+        res.status(404).send("Error with post upvote");
+    } 
 }

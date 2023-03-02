@@ -57,10 +57,16 @@ const commentSchema = new mongoose.Schema({
         default: Date.now()
       },
       upvotes: {
-        type: Number,
-        default: 0,
-        user_id: mongoose.ObjectId,
-        ref: "users"
+        votes: {
+            type: Number,
+            default: 0,
+        },
+        voters: {
+            type: Array,
+            of: mongoose.ObjectId
+        }
+        //user_id: mongoose.ObjectId,
+        //ref: "users"
       }
     },
   });
