@@ -48,10 +48,6 @@ exports.loginForm = (req, res, next) => {
   });
 }
 
-exports.login = (req, res) => {
-  res.render("../views/login.pug");
-}
-
 /**
  * registerForm
  * @desc Handles creating a new user. 
@@ -73,31 +69,32 @@ exports.registerForm = (req, res, next) => {
       const hash = await user.argon2id(`${ fields.pass }`);
       const newUser = new user({ email:`${ fields.email }`, username: `${ fields.username }`, password:`${ hash }`});
       newUser.save();
-      res.send("Stored in db");
+      res.status(201).send("New User stored in db");
     }  
   });
 }
 
-exports.register = (req, res) => {
-  res.render("../views/register.pug");
-}
-
-
+// Get all users
 exports.getUsers = async (req, res) => {
   const users = await user.find();
   res.json({ users });
 }
 
+// Get user by id
 exports.getUser = async (req, res) => {
     try{
         const queryUser = await user.findById(req.params.id);
-        res.json({ queryUser });
+        if(queryUser == null){
+            throw new Error("Check user id ", req.params.id);
+        }
+        res.status(201).json({ queryUser });
     }catch(error){
         console.error(error);
-        res.sendStatus(404);
+        res.status(404).send("Error with getting user");
     }
 }
 
+// Update user data
 exports.updateUser = (req, res) => {
   // Allow password to be changed
   // we'll have to hash it again
@@ -110,12 +107,15 @@ exports.updateUser = (req, res) => {
     }
     
     try {
-      // Maybe check if document exists? Or verify post is actually updated
+        // Verify post found is not null
         user.findByIdAndUpdate(req.params.id, {
             email: `${ fields.email}`,
             username: `${ fields.username }`,
             //pass: `${ fields.password }`,
-        }, (user) => {
+        }, (err, user) => {
+            if(err){
+                console.error(err);
+            }
             // Needs callback to execute query
             // this still gives null
             console.log(user);
@@ -132,14 +132,16 @@ exports.updateUser = (req, res) => {
 }
 
 exports.deleteUser = async (req, res) => {
+    // Delete all posts and comments user has made also
     try{
-        await user.findByIdAndDelete(req.params.id);
+        const userFound = await user.findByIdAndDelete(req.params.id);
+        if(userFound == null){
+            throw new Error("Check user id ", req.params.id);
+        }
         res.status(200).send("User deleted");
     }catch(err){
         console.error(err);
-        res.sendStatus(404);
-    } finally{
-        console.log("User deleted");
-    }
+        res.status(404).send("Error deleteing user");
+    } 
 }
 

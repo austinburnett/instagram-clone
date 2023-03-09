@@ -11,13 +11,13 @@ router.get("/", (req, res) => {
 });
 
 // Login Page
-router.get("/login", userController.login);
+//router.get("/login", userController.login);
 
-// Login form 
+// Login Page w/form 
 router.post("/login", userController.loginForm);
 
 // Register Page
-router.get("/register", userController.register);
+//router.get("/register", userController.register);
 
 // Create User, Register form 
 router.post("/register", userController.registerForm);

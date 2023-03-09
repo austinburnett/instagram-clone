@@ -8,49 +8,58 @@ const post = require("../models/postModel");
 
 // Create Post
 exports.createPost = (req, res) => {
-  const form = formidable();
-  form.parse(req, async (formErr, fields) => {
-    if(formErr) {
-      console.err(formErr);
-      return;
-    }
-    
-    try {
-      const newPost = new post({
-        title: `${ fields.title }`,
-        user_id: req.username,
-        content: `${ fields.content }`,
-        caption: `${ fields.caption }`,
-      });
+    const form = formidable();
+    form.parse(req, async (formErr, fields) => {
+        if(formErr) {
+            console.error(formErr);
+        }
 
-      await newPost.save();
-      
-    } catch(err) {
-      console.error(err);
-      res.sendStatus(500);
-    }
-  });
-  // 201 status code created
-  res.status(201).send("Post created");
+        try {
+            // Need validation, post can be created with empty fields
+            const newPost = new post({
+                title: `${ fields.title }`,
+                user_id: req.username,
+                content: `${ fields.content }`,
+                caption: `${ fields.caption }`,
+            });
+
+            res.status(201).send("Post created");
+            await newPost.save();
+
+        } catch(err) {
+            console.error(err);
+            res.status(500).send("Error creating post");
+        }
+    });
 }
 
-// Get Post 
+// Get Post by id
 exports.getPost = async (req, res) => {
     try{
         const currPost = await post.findById(req.params.id);
-        res.json({ currPost });
+        if(currPost == null){
+            throw new Error("Check post id " + req.params.id);
+        }
+        res.status(201).json({ currPost });
     }catch(err){
         console.error(err);
-        res.sendStatus(404);
-    } finally{
-        console.log("found");
-    }
+        res.status(404).send("Error getting post");
+    } 
 }
 
-// Get All Recent Post
+// Get All Posts
 exports.getAllPost = async (req, res) => {
-  const posts = await post.find();
-  res.json({ posts });
+    try{
+        const posts = await post.find();
+        if(posts == null){
+            throw new Error("Error retrieving posts");
+        }
+
+        res.status(201).json({ posts });
+    } catch(err){
+        console.error(err);
+        res.status(404).send("Error getting all posts");
+    }
 }
 
 // Update a part of the Post
@@ -63,22 +72,28 @@ exports.updatePost = async (req, res) => {
     }
     
     try {
-      // Maybe check if document exists? Or verify post is actually updated
+        // Need to verify if post with id exists
+        // app crashes when given wrong id
         post.findByIdAndUpdate(req.params.id, {
+            // Needs callback to execute 
             title: `${ fields.title }`,
             content: `${ fields.content }`,
             caption: `${ fields.caption }`,
         }, (err, result) => {
-            // Needs callback to execute 
-            console.log(result);
+            if(err){
+                console.error(err);
+            }
+            else if(result == null){
+                res.status(404).send("Error updating post");
+                throw new Error("Error with updating post with id: " + req.params.id);
+            }
+            else{
+                res.status(201).send("Post updated");
+            }
         });
-
-        res.status(201).send("Post updated");
-        console.log("Post updated with id:" + " " + req.params.id);
-      
     } catch(err) {
       console.error(err);
-      res.sendStatus(500);
+      res.status(500).send("Error updating post");
     }
   });
 }
@@ -87,21 +102,31 @@ exports.updatePost = async (req, res) => {
 exports.deletePost = async (req, res) => {
     try{
         // need to check if post was actually found
-        await post.findByIdAndDelete(req.params.id);
+        const deletedPost = await post.findByIdAndDelete(req.params.id);
+        if(deletedPost == null){
+            throw new Error("Error deleting post, check id: " + req.params.id);
+        }
+
         res.status(200).send("Post deleted");
     }catch(err){
         console.error(err);
         res.status(404).send("Error with deleting post");
-    } }
+    } 
+}
 
 // Upvote Post
 exports.upvote = async (req, res) => {
     try{
+        // verify found post is not null
         post.findOne({
             _id: req.params.id
         }, async (err, result) => {
             if(err){
                 console.error(err);
+            }
+            else if(result == null){
+                res.status(404).send("Error upvoting post");
+                throw new Error("Error upvoting post, check id: " + req.params.id);
             }
 
             let voters = result.meta.upvotes.voters;
