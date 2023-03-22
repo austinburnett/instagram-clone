@@ -24,7 +24,12 @@ mongoUtil.connect(() => {});
 // Close all connections when the application recieves SIGINT signal
 process.on("SIGINT", async() => {
     db = mongoUtil.getDb();
-    await db.disconnect();
-    console.log("\nMongoDB connections closed.");
-    process.exit(0);
+    try{
+        await db.disconnect();
+    } catch(err){
+        console.error(err);
+    } finally{
+        console.log("\nMongoDB connections closed.");
+        process.exit();
+    }
 });

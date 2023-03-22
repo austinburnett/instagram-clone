@@ -1,0 +1,33 @@
+services:
+  # Backend Server app
+  backend:
+    image: node:latest
+    command: sh -c "npm install && npm start"
+    ports:
+      # host machine port: container port
+      - 3000:3000
+    working_dir: /src
+    volumes:
+      # HOST:CONTAINER structure, used to seperate host path and container path
+      - ./:/src
+    depends_on:
+      - mongodb
+
+  # Mongodb 
+  # network alias is mongodb
+  mongodb:
+    image: mongo
+    ports:
+      - 27017:27017
+    restart: always
+    volumes:
+      - my-mongodb-data:/data/db
+        # :ro means the container can READ ONLY the contents
+      - ./docker-entrypoint-initdb.d/mongoInit.js:/docker-entrypoint-initdb.d/mongoInit.js:ro
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root 
+      - MONGO_INITDB_ROOT_PASSWORD=pass
+      - MONGO_INITDB_DATABASE=instaCloneDB
+    
+volumes:
+  my-mongodb-data:
