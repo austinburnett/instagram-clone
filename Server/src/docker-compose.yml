@@ -27,7 +27,7 @@ services:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=root 
       - MONGO_INITDB_ROOT_PASSWORD=pass
-      - MONGO_INITDB_DATABASE=instaCloneDB
+      - MONGO_INITDB_DATABASE=test
     
 volumes:
   my-mongodb-data:
