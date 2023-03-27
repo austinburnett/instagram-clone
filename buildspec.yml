@@ -1,0 +1,18 @@
+version: 0.0
+
+phases:
+  pre_build:
+    commands:
+      - npm install
+  build:
+    commands:
+      - docker-compose up -d
+      - npm start
+      - npm test
+
+reports:
+  jest_reports:
+    files:
+      - <report filename>
+    file-format: JUNITXML
+    base-directory: <test report directory>
