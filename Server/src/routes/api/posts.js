@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const postController = require("../../controllers/postController");
 const comments = require("./comments.js");
+const setPostId = require("../../middleware/setPostId.js");
 /**
  * posts.js 
  * @desc Handles routes for post resources
@@ -26,10 +27,6 @@ router.delete("/:id", postController.deletePost);
 router.patch("/:id/upvote", postController.upvote);
 
 // Comments
-router.use("/:id/comments", (req, res, next) => {
-    console.log("from posts routes middleware", req.params);
-    req.post_id = req.params.id
-    next();
-}, comments);
+router.use("/:id/comments", setPostId, comments);
 
 module.exports = router;

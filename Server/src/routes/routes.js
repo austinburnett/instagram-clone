@@ -13,7 +13,7 @@ router.get("/", (req, res) => {
 // Login Page
 //router.get("/login", userController.login);
 
-// Login Page w/form 
+// Login form 
 router.post("/login", userController.loginForm);
 
 // Register Page
@@ -27,7 +27,6 @@ router.post("/register", userController.registerForm);
 router.use(isAuthenticated);
 
 // Api Router (API Entry Point)
-//router.use("/users", isAuthenticated, users); 
 router.use("/users", users); 
 router.use("/posts", posts); 
 
