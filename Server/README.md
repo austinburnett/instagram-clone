@@ -1,4 +1,4 @@
-### Instructions on how to get backend up and running ###
+### Instructions on how to get backend up and running
 
 Note: We have a bind mount on /src, node_modules contains a module argon2
 which is installed specifically for each os. This is why I had to modify
@@ -11,6 +11,10 @@ as this only runs if /data/db is empty i.e on database initialization.
 ### How to run the backend
 1. cd /Server/src
 2. docker compose up
+
+### How to run unit tests
+1. working directory should be /Instagram-Clone/Server/src
+2. npm test
 
 ### If you would like to run the project without containerization (not recommended). 
 1. rm -r node_modules
