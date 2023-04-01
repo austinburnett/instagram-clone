@@ -84,8 +84,8 @@ A complete backend system that handles the logic for most of the features that I
 - [ ] Extensions
     - [ ] Deploy to aws 
     - [ ] CI/CD with gitlab or github action
-    - [ ] Unit testing
-    - [ ] Update README to show quickstart guide for easy demonstration
+    - [x] Unit testing
+    - [x] Update README to show quickstart guide for easy demonstration
     - [ ] Create a video demonstrating the core functionalities
     - [x] Docker dev enviroment
     - [ ] Kubernetes
