@@ -1,20 +1,42 @@
 // Require middleware: Pull middleware into tests
 const setPostId = require("../middleware/setPostId.js");
-const isAuthenticated = require("../middleware/isAuthenticated.js");
+const isAuthenticated = require("../middleware/isAuthenticated.js").isAuthenticated;
+
 
 describe("test middleware that set variables on req", () =>{
-    let req = {"params": {"id": 12}}, res;
+    let res = {
+        status: function(httpStatusCode){
+            expect(httpStatusCode).toBe(401);
+            return this; // chainable method
+        } ,
+        send: jest.fn((msg) => msg)
+    };
+    let req = {
+        params: {"id": 12},
+        headers: {
+            authorization: undefined 
+        },
+    };
+    
+    let next = jest.fn();
 
-    function next(){
+    beforeEach(() => {
+        next.mockClear();
+    })
 
-    }
-
-    it("should set post_id on req object", () =>{
+    it("should set post_id on req object and call next() once", () =>{
         setPostId(req, res, next)
         expect(req.post_id).toBe(12);
+        expect(next).toHaveBeenCalledTimes(1);
     });
 
-    it("should set userId on req object", () =>{
-        //isAuthenticated(req, res, next)
+    it("should set http status code to 401 and set nothing on req", () =>{
+        isAuthenticated(req, res, next)
+        expect(req.username).toBe(undefined);
+        expect(next).not.toHaveBeenCalled();
     })
 });
+
+describe(("test isAuthenticated control flow"), () => {
+
+})
