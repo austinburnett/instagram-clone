@@ -14,10 +14,12 @@ as this only runs if /data/db is empty i.e on database initialization.
 
 ### How to run unit tests
 1. working directory should be /Instagram-Clone/Server/src
-2. npm test
+2. rm -r node_modules/ generated from docker compose up *argon2 module is os specific
+3. npm install
+4. npm test
 
 ### If you would like to run the project without containerization (not recommended). 
-1. rm -r node_modules
+1. rm -r node_modules/
 2. rm package-lock.json 
 3. npm install
 4. Uncomment the other DB_URI env variable in .env file in

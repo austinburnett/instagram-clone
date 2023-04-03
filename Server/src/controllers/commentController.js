@@ -29,7 +29,7 @@ exports.getAllComments = async (req, res) => {
         if(currentPost == null){
             throw new Error("Check post id ", req.post_id);
         }
-        res.json(currentPost.comments);
+        res.status(201).json(currentPost.comments);
     } catch(err){
         console.error(err);
         res.status(404).send("Error with retrieving all comments");
