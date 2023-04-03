@@ -77,7 +77,7 @@ exports.registerForm = (req, res, next) => {
 // Get all users
 exports.getUsers = async (req, res) => {
   const users = await user.find();
-  res.json({ users });
+  res.status(201).json({ users });
 }
 
 // Get user by id

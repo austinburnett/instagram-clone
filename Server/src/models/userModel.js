@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const post = require("./postModel");
 const argon2 = require("argon2");
 
 /*
