@@ -17,6 +17,7 @@ A complete backend system that handles the logic for most of the features that I
 - [jsonwebtoken]()
 - [argon2]()
 - [express-jwt]()
+- [jest](https://jestjs.io/docs/getting-started)
 
 ### Roadmap
 - [x] Initial Backend Setup
