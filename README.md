@@ -1,11 +1,11 @@
-# Instagram-Clone
+# webapp-backend
 
 ## Authors
 Austin Burnett
 
 For the purpose of learning more about Backend develeopment/technologies, I decided to tackle designing the backend for a web application that takes inspiration from the features that Instagram provides.
 
-## What is Instagram-Clone?
+## What is webapp-backend?
 A complete backend system that handles the logic for most of the features that Instagram has. 
 
 ### Dependencies
