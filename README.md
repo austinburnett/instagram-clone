@@ -83,8 +83,7 @@ A complete backend system that handles the logic for most of the features that I
         - [x] Authorization (Session state) (Secure endponts)
             - [x] Add authorization using JWT(HMAC) 
 - [ ] Extensions
-    - [ ] Deploy to aws 
-    - [ ] CI/CD with gitlab or github action
+    - [ ] CI/CD with aws 
     - [x] Unit testing
     - [x] Update README to show quickstart guide for easy demonstration
     - [ ] Create a video demonstrating the core functionalities
