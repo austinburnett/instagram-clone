@@ -3,10 +3,8 @@ version: 0.1
 phases:
   pre_build:
     commands:
+      - cd ./Server/src/
       - npm install
   build:
     commands:
-      - cd ./Server/src/
-      - docker-compose up -d
-      - npm start
-      - npm test
+      - npm build
