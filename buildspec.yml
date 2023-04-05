@@ -6,6 +6,7 @@ phases:
       - npm install
   build:
     commands:
+      - cd ./Server/src/
       - docker-compose up -d
       - npm start
       - npm test
