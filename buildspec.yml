@@ -1,12 +1,18 @@
 version: 0.1
 
 phases:
+  install:
+    runtime-versions:
+      nodejs: latest
   pre_build:
     commands:
+      - echo Executing pre_build commands
       - cd ./Server/src/
       - npm install
   build:
     commands:
+      - echo Executing build commands
+      - cd ./Server/src/
       - npm test
       - npm build
 reports:
