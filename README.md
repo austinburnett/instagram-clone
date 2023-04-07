@@ -83,12 +83,11 @@ A complete backend system that handles the logic for most of the features that I
         - [x] Authorization (Session state) (Secure endponts)
             - [x] Add authorization using JWT(HMAC) 
 - [ ] Extensions
-    - [ ] CI/CD with aws 
+    - [ ] CI/CD with aws, docker, and kubernetes 
     - [x] Unit testing
     - [x] Update README to show quickstart guide for easy demonstration
     - [ ] Create a video demonstrating the core functionalities
     - [x] Docker dev enviroment
-    - [ ] Kubernetes
     - [ ] Websocket for private messages
     - [ ] Caching with redis
     - [ ] Load balancing/testing
