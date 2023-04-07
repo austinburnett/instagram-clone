@@ -12,7 +12,6 @@ phases:
   build:
     commands:
       - echo Executing build commands
-      - cd ./Server/src/
       - npm test
       - npm build
 reports:
