@@ -8,3 +8,10 @@ phases:
   build:
     commands:
       - npm build
+      - npm test
+reports:
+  jest_reports:
+    files:
+      - testReport
+    file-format: JUNITXML
+    base-directory: ./Server/
