@@ -7,11 +7,11 @@ phases:
       - npm install
   build:
     commands:
-      - npm build
       - npm test
+      - npm build
 reports:
   jest_reports:
     files:
       - testReport
     file-format: JUNITXML
-    base-directory: ./Server/
+    base-directory: ./Server/src/
