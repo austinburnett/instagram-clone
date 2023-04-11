@@ -5,8 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "jest --config=jest.config.js --verbose",
-    "build": "node ./app.js",
-    "start": "nodemon ./app.js"
+    "build": "node ./app.local.js",
+    "start": "nodemon ./app.local.js"
   },
   "author": "",
   "license": "WTFPL",
@@ -20,6 +20,7 @@
     "jest-junit": "^15.0.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.3.4",
-    "nodemon": "^2.0.16"
+    "nodemon": "^2.0.16",
+    "serverless-http": "^3.2.0"
   }
 }
