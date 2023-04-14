@@ -1,12 +1,11 @@
-# webapp-backend
+# About 
 
-## Authors
-Austin Burnett
+For the purpose of learning more about Backend develeopment and cloud technologies, I decided to tackle designing the backend for a web application that takes inspiration from the features that Instagram provides.
+Note: For easy demonstration, I deployed the backend to aws Lambda. However, some of the features on the serverless instance are not available due to the limitations of
+my budget and aws free tier.
 
-For the purpose of learning more about Backend develeopment/technologies, I decided to tackle designing the backend for a web application that takes inspiration from the features that Instagram provides.
-
-## What is webapp-backend?
-A complete backend system that handles the logic for most of the features that Instagram has. 
+## Demo webapp-backend api here: 
+https://wclofcjamd.execute-api.us-east-2.amazonaws.com/dev/expressApp/
 
 ### Dependencies
 - [ExpressJS](https://expressjs.com/)
@@ -94,6 +93,3 @@ A complete backend system that handles the logic for most of the features that I
     - [ ] Write a blog about how to replicate this app / teach about backend developement
     - [ ] Use a message queue like kafka or rabbitmq 
     - [ ] Batch jobs
-
-### Architecture
-- [ ] Use draw.io to create a diagram on the architecture

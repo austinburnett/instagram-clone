@@ -5,8 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "jest --config=jest.config.js --verbose",
-    "build": "node ./app.js",
-    "start": "nodemon ./app.js"
+    "build": "node ./app.local.js",
+    "start": "nodemon ./app.local.js"
   },
   "author": "",
   "license": "WTFPL",

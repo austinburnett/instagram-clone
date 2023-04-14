@@ -76,12 +76,20 @@ exports.registerForm = (req, res, next) => {
 
 // Get all users
 exports.getUsers = async (req, res) => {
-  const users = await user.find();
+  //const users = await user.find();
+  let users = [
+      {
+          _id: "ObjectId('62e09a8bd3aef3a63d788f)",
+          email: "foo@gmail.com",
+          password: "$argon2id$v=19$m=4096,t=3,p=1$RTMqhq724f7WNKM3wMtoxg$3j9ceDcd+9k2xAKh8..."
+      }
+  ]
   res.status(201).json({ users });
 }
 
 // Get user by id
 exports.getUser = async (req, res) => {
+    /*
     try{
         const queryUser = await user.findById(req.params.id);
         if(queryUser == null){
@@ -92,6 +100,16 @@ exports.getUser = async (req, res) => {
         console.error(error);
         res.status(404).send("Error with getting user");
     }
+    */
+  let users = [
+      {
+          _id: "ObjectId('62e09a8bd3aef3a63d788f)",
+          email: "foo@gmail.com",
+          password: "$argon2id$v=19$m=4096,t=3,p=1$RTMqhq724f7WNKM3wMtoxg$3j9ceDcd+9k2xAKh8..."
+      }
+  ]
+  res.status(201).json({ users });
+
 }
 
 // Update user data
