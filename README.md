@@ -1,11 +1,27 @@
-# About 
+# webapp-backend 
 
-For the purpose of learning more about Backend develeopment and cloud technologies, I decided to tackle designing the backend for a web application that takes inspiration from the features that Instagram provides.
-Note: For easy demonstration, I deployed the backend to aws Lambda. However, some of the features on the serverless instance are not available due to the limitations of
-my budget and aws free tier.
+webapp-backend was built for the purpose of expanding my skills in backend develeopment and cloud technologies. The features provided resemble that of popular social media webapps used today.
 
-## Demo webapp-backend api here: 
+The code for local version of the project can be found at: [/Server/src](https://github.com/austinburnett/webapp-backend/tree/master/Server/src).
+Which includes the following features:
+- Authentication/Authorization with JWT
+- Rest Api with CRUD database operations
+- Docker development environment
+- Build pipeline with AWS CodeBuild triggered by pushing commits to the repo
+- Postman Api testing workspace
+- Unit tests using jest testing framework
+
+The code for the serverless API can be found at: [/Server/serverless/src](https://github.com/austinburnett/webapp-backend/tree/master/Server/serverless/src)
+
+Note: for easy demonstration, I deployed the backend to aws Lambda. However, some of the features on the serverless instance are not available due to the limitations of my budget and aws free tier.
+
+## Overview of Documentation
+- Instructions on running the project locally: [/Server/README.md](https://github.com/austinburnett/webapp-backend/blob/master/Server/README.md)
+
+## Demo webapp-backend serverless api here: 
 https://wclofcjamd.execute-api.us-east-2.amazonaws.com/dev/expressApp/
+
+## Video demo of webapp-backend with Postman
 
 ### Dependencies
 - [ExpressJS](https://expressjs.com/)
