@@ -21,7 +21,8 @@ Note: for easy demonstration, I deployed the backend to aws Lambda. However, som
 ## Demo webapp-backend serverless api here: 
 https://wclofcjamd.execute-api.us-east-2.amazonaws.com/dev/expressApp/
 
-## Video demo of webapp-backend with Postman
+## Video demo of webapp-backend with Postman and Docker Compose
+<img src="https://github.com/austinburnett/webapp-backend/blob/master/demo.gif"/> 
 
 ### Dependencies
 - [ExpressJS](https://expressjs.com/)
