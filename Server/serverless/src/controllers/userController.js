@@ -1,6 +1,19 @@
 const formidable = require("formidable");
 const user = require("../models/userModel");
 let jwt = require("jsonwebtoken");
+const userDb = [
+    {
+        _id: "ObjectId('62e09a8bd3aef3a63d788f)",
+        email: "foo@gmail.com",
+        password: "$argon2id$v=19$m=4096,t=3,p=1$RTMqhq724f7WNKM3wMtoxg$3j9ceDcd+9k2xAKh8..."
+    },
+
+    {
+        _id: "ObjectId('62e09a8bd3aef3a63d788f)",
+        email: "foobar@gmail.com",
+        password: "$argon2id$v=19$m=4096,t=3,p=1$RTMqhq724f7WNKM3wMtoxg$3j9ceDcd+9k2xAKh8..."
+    }
+];
 //const randomBytes = require("node:crypto").randomBytes;
 
 /**
@@ -77,14 +90,7 @@ exports.registerForm = (req, res, next) => {
 // Get all users
 exports.getUsers = async (req, res) => {
   //const users = await user.find();
-  let users = [
-      {
-          _id: "ObjectId('62e09a8bd3aef3a63d788f)",
-          email: "foo@gmail.com",
-          password: "$argon2id$v=19$m=4096,t=3,p=1$RTMqhq724f7WNKM3wMtoxg$3j9ceDcd+9k2xAKh8..."
-      }
-  ]
-  res.status(201).json({ users });
+  res.status(201).json({ userDb });
 }
 
 // Get user by id
@@ -101,15 +107,8 @@ exports.getUser = async (req, res) => {
         res.status(404).send("Error with getting user");
     }
     */
-  let users = [
-      {
-          _id: "ObjectId('62e09a8bd3aef3a63d788f)",
-          email: "foo@gmail.com",
-          password: "$argon2id$v=19$m=4096,t=3,p=1$RTMqhq724f7WNKM3wMtoxg$3j9ceDcd+9k2xAKh8..."
-      }
-  ]
-  res.status(201).json({ users });
 
+  res.status(201).json({ userDb });
 }
 
 // Update user data

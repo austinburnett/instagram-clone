@@ -1,5 +1,33 @@
 const formidable = require("formidable");
 const post = require("../models/postModel");
+const postDb = [
+    {
+        _id: "ObjectId('62e09a8bd3aef3a63d788f)",
+        title: "This is another test title",
+        user_id: "ObjectId('62e09a8bd3aef3a63d788f)",
+        content: "<image here>",
+        caption: "This is my image caption!!",
+        meta: {
+            votes: 2,
+            voters: [],
+            date: "2023-03-02T21:59:41.334+00:00"
+        },
+        comments: []
+    },
+    {
+        _id: "ObjectId('62e09a8bd3aef3a63d788f)",
+        title: "This is a test title",
+        user_id: "ObjectId('62e09a8bd3aef3a63d788f)",
+        content: "<image here>",
+        caption: "This is a image caption!!",
+        meta: {
+            votes: 1,
+            voters: [],
+            date: "2023-03-02T21:59:41.334+00:00"
+        },
+        comments: []
+    },
+];
 
 /**
  * postController.js
@@ -35,6 +63,7 @@ exports.createPost = (req, res) => {
 
 // Get Post by id
 exports.getPost = async (req, res) => {
+    /*
     try{
         const currPost = await post.findById(req.params.id);
         if(currPost == null){
@@ -44,11 +73,13 @@ exports.getPost = async (req, res) => {
     }catch(err){
         console.error(err);
         res.status(404).send("Error getting post");
-    } 
+    } */
+    res.status(201).json({ postDb } + req.params.id);
 }
 
 // Get All Posts
 exports.getAllPost = async (req, res) => {
+    /*
     try{
         const posts = await post.find();
         if(posts == null){
@@ -59,7 +90,8 @@ exports.getAllPost = async (req, res) => {
     } catch(err){
         console.error(err);
         res.status(404).send("Error getting all posts");
-    }
+    }*/
+    res.status(201).json({ postDb });
 }
 
 // Update a part of the Post

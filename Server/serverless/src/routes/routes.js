@@ -3,11 +3,11 @@ const router = express.Router();
 const users = require("./api/users");
 const posts = require("./api/posts");
 const userController = require("../controllers/userController");
-const isAuthenticated = require("../middleware/isAuthenticated").isAuthenticated;
+//const isAuthenticated = require("../middleware/isAuthenticated").isAuthenticated;
 
 // Home Page Route
 router.get("/", (req, res) => {
-  res.send("This is the home page. Here are the api routes: /users/ /posts/ /posts/:id/comments");
+  res.send("This is the home page. To demo some of the routes, append the following to the url above. \n /users/ \n /posts/");
 });
 
 // Login Page
