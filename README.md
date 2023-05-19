@@ -1,6 +1,6 @@
 # webapp-backend 
 
-webapp-backend was built for the purpose of expanding my skills in backend develeopment and cloud technologies. The features provided resemble that of popular social media webapps used today.
+webapp-backend was built for the purpose of expanding my skills in backend develeopment and cloud technologies. The features provided resemble modern industry standards in Software Development and that of popular social media webapps used today.
 
 The code for local version of the project can be found at: [/Server/src](https://github.com/austinburnett/webapp-backend/tree/master/Server/src).
 Which includes the following features:
