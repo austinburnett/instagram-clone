@@ -7,7 +7,7 @@ Which includes the following features:
 - Authentication/Authorization with JWT
 - Rest Api with CRUD database operations
 - Docker development environment
-- Build pipeline with AWS CodeBuild triggered by pushing commits to the repo
+- Continuous Integration(CI) with AWS CodeBuild triggered by pushing commits to the repo
 - Postman Api testing workspace
 - Unit tests using jest testing framework
 
