@@ -1,11 +1,11 @@
 ### Instructions on how to get backend up and running
 
-Note: We have a bind mount on /src, node_modules contains a module argon2
+- Note: We have a bind mount on /src, node_modules contains a module argon2
 which is installed specifically for each os. This is why I had to modify
 the project structure. Simply adding a .dockerignore file with node_modules
 did not work.
 
-Note: to ensure the monogInit.js script runs, remove all volumes in docker
+- Note: to ensure the monogInit.js script runs, remove all volumes in docker
 as this only runs if /data/db is empty i.e on database initialization.
 
 ### How to run the backend
