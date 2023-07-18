@@ -1,20 +1,5 @@
 const mongoose = require("mongoose");
-
-/*
- * commentSchema
- * @desc Contains comment data for embedding in Post Model
- */
-const commentSchema = new mongoose.Schema({
-    user_id: {
-        type: mongoose.ObjectId,
-        required: true
-    },
-    text: {
-        type: String,
-        minLength: 1,
-        required: true,
-    }
-});
+const commentSchema = require("./commentModel.js");
 
 /*
  * postSchema
@@ -25,50 +10,41 @@ const commentSchema = new mongoose.Schema({
   // probably shouldnt hardcode this, use ENV variable
   const contentPath = "https://wallhaven.cc";
   const postSchema = new mongoose.Schema({
-    title: {
-      type: String,
-      maxlength: 50,
-      required: true
+    created_at: {
+      type: Date,
+      default: Date.now(),
     },
-    // mongdb DBref
     user_id: {
       type: mongoose.ObjectId,
       ref: "users",
     },
-    content: {
+    image: {
       type: String,
       required: true,
-      // Remember this is not stored in mongodb
-        // i should just delete this
-      get: (c) => `${ contentPath }${ c }`
     },
     caption: {
       type: String,
       minLength: 1,
       required: true
     },
+    // do we really need this? read below
     comments: {
       type: Array,
-      of: commentSchema
+      of: "commentSchema"
     },
-    meta: {
-      date: {
-        type: Date,
-        default: Date.now()
-      },
-      upvotes: {
-        votes: {
-            type: Number,
-            default: 0,
-        },
-        voters: {
-            type: Array,
-            of: mongoose.ObjectId
+    // would it be better to create a seperate schema for comments
+      // when you could just store a null comment in the likes Array
+      // for the Comment schema we would need to store extra fields for
+      // user_id and post_id. However, if we implement it in likes we just
+      // need 1 extra field that will default to null
+    likes: [
+        {
+            type: mongoose.ObjectID,
+            ref: "users",
+            comment: String,
+            default: NUll,
         }
-        //user_id: mongoose.ObjectId,
-        //ref: "users"
-      }
-    },
+    ],
   });
 
 /* NOTE: methods must be added to the schema before compiling it with mongoose.model()

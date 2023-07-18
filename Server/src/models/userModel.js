@@ -1,12 +1,7 @@
 const mongoose = require("mongoose");
 const argon2 = require("argon2");
 
-/*
- * Todo:
- * Define method for user to be able to post a post and comment
- * We could create a instance function for each document to
- * create a comment and post
- */
+
 const userSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -48,11 +43,9 @@ userSchema.statics.argon2id = async function(pass) {
 userSchema.statics.authenticate = async function(hash, pass) {
   try {
     if(await argon2.verify(hash, pass)) {
-      // passwords match
       return true;
     }
     else {
-      // passwords don't match
       return false;
     }
   } catch(err) {
