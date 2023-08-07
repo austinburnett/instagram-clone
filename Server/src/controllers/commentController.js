@@ -1,4 +1,8 @@
 const post = require("../models/postModel.js");
+/*
+ * Refer to models/postModel
+ * this file may need to be deprecated
+ */
 
 // Create comment for a given post _id
 exports.createComment = async (req, res) => {

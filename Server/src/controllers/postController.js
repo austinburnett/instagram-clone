@@ -4,6 +4,11 @@ const post = require("../models/postModel");
 /**
  * postController.js
  * @desc Export functions that handles req/res logic for posts 
+ * @TODO: 
+ * post can be created with empty fields - createPost
+ * Need to verify if post with id exists - getPost
+ * app crashes when given wrong id - getPost
+ * verify found post is not null - likePost
  */ 
 
 // Create Post
@@ -15,11 +20,9 @@ exports.createPost = (req, res) => {
         }
 
         try {
-            // Need validation, post can be created with empty fields
             const newPost = new post({
-                title: `${ fields.title }`,
-                user_id: req.username,
-                content: `${ fields.content }`,
+                username: req.username,
+                image: "this is an image",
                 caption: `${ fields.caption }`,
             });
 
@@ -72,12 +75,9 @@ exports.updatePost = async (req, res) => {
     }
     
     try {
-        // Need to verify if post with id exists
-        // app crashes when given wrong id
         post.findByIdAndUpdate(req.params.id, {
             // Needs callback to execute 
-            title: `${ fields.title }`,
-            content: `${ fields.content }`,
+            image: `${ fields.content }`,
             caption: `${ fields.caption }`,
         }, (err, result) => {
             if(err){
@@ -114,10 +114,9 @@ exports.deletePost = async (req, res) => {
     } 
 }
 
-// Upvote Post
-exports.upvote = async (req, res) => {
+// Like Post
+exports.likePost = async (req, res) => {
     try{
-        // verify found post is not null
         post.findOne({
             _id: req.params.id
         }, async (err, result) => {
@@ -125,32 +124,15 @@ exports.upvote = async (req, res) => {
                 console.error(err);
             }
             else if(result == null){
-                res.status(404).send("Error upvoting post");
-                throw new Error("Error upvoting post, check id: " + req.params.id);
-            }
-
-            let voters = result.meta.upvotes.voters;
-            let foundUser = 0;
-            for(voter in voters){
-                if(voters[voter] == req.username){
-                    foundUser = 1;
-                }
-            }
-            
-            if(foundUser){
-                result.meta.upvotes.votes -= 1;
-                result.meta.upvotes.voters.pull(req.username);
-            }
-            else{
-                result.meta.upvotes.votes += 1;
-                result.meta.upvotes.voters.push(req.username);
+                res.status(404).send("Error liking post");
+                throw new Error("Error liking post, check id: " + req.params.id);
             }
 
             await result.save();
-            res.status(200).send("Post upvotes updated");
+            res.status(200).send("Post likes updated");
         });
     } catch(err){
         console.error(err);
-        res.status(404).send("Error with post upvote");
+        res.status(404).send("Error with post like");
     } 
 }

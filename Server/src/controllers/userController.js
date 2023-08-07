@@ -29,10 +29,13 @@ exports.loginForm = (req, res, next) => {
       }
 
       else if(await user.authenticate(userFound.password, fields.pass)) {
-        
+        // Logging
+        console.log("user found for login in user controller:" + userFound);
+
         const token = jwt.sign({
           audience: `${ userFound._id }`,
-          issuer: "webapp-backend",
+          username: `${ userFound.username }`,
+          issuer: "Instagram Clone",
         }, process.env.SECRET, {
           algorithm: "HS256",
           expiresIn: "1 hour",

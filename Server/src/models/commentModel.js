@@ -5,12 +5,9 @@ const mongoose = require("mongoose");
  * @desc Defines comment schema for embedding in Post Model
  */
 
-// do I really need this file?
-    // read postModel.js
 const commentSchema = new mongoose.Schema({
-    user_id: {
-        type: mongoose.ObjectId,
-        ref: "users",
+    username: {
+        type: String,
         required: true
     },
     text: {

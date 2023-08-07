@@ -23,10 +23,10 @@ router.patch("/:id", postController.updatePost);
 // Delete post 
 router.delete("/:id", postController.deletePost);
 
-// Upvote post
-router.patch("/:id/upvote", postController.upvote);
+// Like post
+router.patch("/:id/like", postController.likePost);
 
 // Comments
-router.use("/:id/comments", setPostId, comments);
+//router.use("/:id/comments", setPostId, comments);
 
 module.exports = router;

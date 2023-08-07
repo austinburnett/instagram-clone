@@ -16,8 +16,10 @@ exports.isAuthenticated = (req, res, next) => {
                 throw err;
             } 
             else {
-                req.username = decoded.audience;
-                console.log("user_id from auth middleware in routes: " + req.username);
+                req.userId = decoded.audience;
+                req.username = decoded.username;
+                console.log("user_id from auth middleware in routes: " + req.userId);
+                console.log("username from auth middleware in routes: " + req.username);
             } next();
         });
     } else { res.status(401).send("Error authenticating Token"); } 

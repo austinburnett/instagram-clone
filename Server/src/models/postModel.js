@@ -7,16 +7,14 @@ const commentSchema = require("./commentModel.js");
  * @export Class that allows us to interface with our posts
  */
 
-  // probably shouldnt hardcode this, use ENV variable
-  const contentPath = "https://wallhaven.cc";
   const postSchema = new mongoose.Schema({
     created_at: {
       type: Date,
       default: Date.now(),
     },
-    user_id: {
-      type: mongoose.ObjectId,
-      ref: "users",
+    username: {
+      type: String,
+      required: true
     },
     image: {
       type: String,
@@ -27,24 +25,13 @@ const commentSchema = require("./commentModel.js");
       minLength: 1,
       required: true
     },
-    // do we really need this? read below
-    comments: {
-      type: Array,
-      of: "commentSchema"
-    },
-    // would it be better to create a seperate schema for comments
-      // when you could just store a null comment in the likes Array
-      // for the Comment schema we would need to store extra fields for
-      // user_id and post_id. However, if we implement it in likes we just
-      // need 1 extra field that will default to null
-    likes: [
-        {
-            type: mongoose.ObjectID,
-            ref: "users",
-            comment: String,
-            default: NUll,
-        }
-    ],
+    likes: [{
+        username: String
+    }],
+    comments: [{
+        type: mongoose.ObjectId,
+        ref: "commentSchema",
+    }]
   });
 
 /* NOTE: methods must be added to the schema before compiling it with mongoose.model()
