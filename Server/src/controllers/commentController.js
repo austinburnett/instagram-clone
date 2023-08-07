@@ -1,7 +1,9 @@
 const post = require("../models/postModel.js");
+const comment = require("../models/commentModel.js");
+
 /*
- * Refer to models/postModel
- * this file may need to be deprecated
+ // check if validation works
+ // match up correct comment in post model - createComment
  */
 
 // Create comment for a given post _id
@@ -11,12 +13,19 @@ exports.createComment = async (req, res) => {
         if(currentPost == null){
             throw new Error("Check post id ", req.post_id);
         }
-        
-        // check if validation works
-        await currentPost.comments.push({
-            user_id: req.username,
+        const newComment = new comment({
+            username: req.username,
             text: req.body,
+            post_id: req.post_id
         });
+        await newComment.save();
+
+        const commentId = await comment.find({ 
+            username: `${req.username}`,
+            text: `${req.body}`
+        });
+
+        currentPost.comments.push(commentId[0]._id);
         await currentPost.save();
 
         res.status(201).send("Comment created");
@@ -61,6 +70,7 @@ exports.getComment = async (req, res) => {
 }
 
 // Update part of comment for a given post w/ _id
+// given post id, query 
 exports.updateComment = async (req, res) => {
     try{
         const currentPost = await post.findById(req.post_id);
@@ -68,12 +78,14 @@ exports.updateComment = async (req, res) => {
             throw new Error("Check post id: " + req.post_id); 
         }
 
-        let comm = await currentPost.comments.id(req.params.id);
-        if(comm == null){
+        const currComment = await comment.findOne({_id: req.params.id});
+
+        if(currComment == null){
             throw new Error("Check comment id " + req.params.id);
         }
-        comm.text = req.body; 
-        await currentPost.save();
+
+        currComment.text = req.body; 
+        await currComment.save();
 
         res.status(200).send("Comment updated");
     } catch(err){

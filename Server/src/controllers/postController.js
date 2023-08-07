@@ -9,6 +9,11 @@ const post = require("../models/postModel");
  * Need to verify if post with id exists - getPost
  * app crashes when given wrong id - getPost
  * verify found post is not null - likePost
+ * check if user matches post owner
+ // remove like
+ // it would be much faster to store a boolean
+ // to see if a user liked the post
+ // likes array size isnt updated when removing like
  */ 
 
 // Create Post
@@ -127,7 +132,20 @@ exports.likePost = async (req, res) => {
                 res.status(404).send("Error liking post");
                 throw new Error("Error liking post, check id: " + req.params.id);
             }
-
+            let isLiked = 0;
+            for(i = 0; i < result.likes.length; i++){
+                if(req.username == result.likes[i].username){
+                    console.log("matched")
+                    isLiked = 1;
+                    result.likes.id(result.likes[i].id).remove();
+                    break;
+                }
+            }
+            if(!isLiked){
+                result.likes.push({
+                    username: `${req.username}`
+                });
+            }
             await result.save();
             res.status(200).send("Post likes updated");
         });

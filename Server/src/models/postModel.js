@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const commentSchema = require("./commentModel.js");
+const comments = require("./commentModel.js");
 
 /*
  * postSchema
@@ -30,7 +30,7 @@ const commentSchema = require("./commentModel.js");
     }],
     comments: [{
         type: mongoose.ObjectId,
-        ref: "commentSchema",
+        ref: "comments",
     }]
   });
 
