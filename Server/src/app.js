@@ -2,6 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const routes = require("./routes/routes");
 const mongoUtil = require("./util/mongoUtil");
+const cors = require("cors");
 const app = express();
 
 // Setup .env
@@ -14,6 +15,8 @@ app.listen(process.env.PORT, () => {
 
 // Template Engine Setup
 app.set("views", "./views");
+
+app.use(cors());
 
 // Initial route
 app.use("/", routes);
