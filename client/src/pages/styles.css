@@ -1,0 +1,32 @@
+*{
+    box-sizing: border-box;
+}
+html{
+    margin: 0;
+}
+html, body{
+    width: 100%;
+    min-height: 100%;
+    padding: 0;
+    border: 0;
+    margin: 0;
+}
+
+.login{
+    text-align: center;
+    display: grid;
+    grid-template-rows: 1fr 2fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.login-content{
+    grid-column-start: 2;
+    grid-row-start: 2;
+    border: 1px solid black;
+    padding: 1vw;
+    margin: 1vw;
+}
+.logo{
+    background-image: url("./instaclone-logo.svg");
+    background-repeat: no-repeat;
+    height: 10vh;
+}

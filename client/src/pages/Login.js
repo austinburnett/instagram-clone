@@ -1,19 +1,21 @@
 import React, { useState } from "react";
-//import { useNavigate } from "react-router-dom"
 import axios from "axios";
 import "./styles.css";
 
 const Login = () => {
-
     // States
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [alert, setAlert] = useState("");
 
-    function handleSubmit(event){
+    function handleSubmit(formEvent){
+        formEvent.preventDefault();
+
         const data = {
             "email": email,
             "pass": password
         }
+
         let config = {
             method: "post",
             baseURL: "http://localhost:3000/login",
@@ -22,24 +24,36 @@ const Login = () => {
                 "pass": `${data.pass}`
             }
         } 
-        axios(config).then(response => {
-            // Set jwt in local storage
-            localStorage.setItem("jwt", response.data.token)
-        })
+
+        axios(config).then((response) => {
+            if(response.status == 200){
+                console.log(response);
+                localStorage.setItem("jwt", response.data.token);
+                setAlert("");
+                // redirect to home page
+                return;
+            }
+        }).catch((err) => {
+            setAlert("Incorrect password provided.")
+            console.error(err);
+        });
     }
-    // console refreshes content when submitting form
     return(
         <div className="login">
-            <button onClick={() => {handleSubmit()}}>Login</button>
+            <div className="login-content">
+            <div className="logo"></div>
             <form onSubmit={(event) => handleSubmit(event)}>
               <input onChange={(event) => setEmail(event.target.value)} placeholder="Email"></input>
-              <br></br>
+              <p>{alert}</p>
               <br></br>
               <input onChange={(event) => setPassword(event.target.value)} placeholder="Password"></input>
               <br></br>
               <br></br>
-              <button>login</button>
+              <button>Login</button>
             </form>
+
+            <a href="">Sign up here</a>
+            </div>
         </div>
     );
 }

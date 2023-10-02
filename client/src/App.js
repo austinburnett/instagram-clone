@@ -9,4 +9,5 @@ function App() {
   );
 }
 
+// App entrypoint
 export default App;
