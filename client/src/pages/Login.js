@@ -41,7 +41,10 @@ const Login = () => {
     return(
         <div className="login">
             <div className="login-content">
+
+            
             <div className="logo"></div>
+
             <form onSubmit={(event) => handleSubmit(event)}>
               <input onChange={(event) => setEmail(event.target.value)} placeholder="Email"></input>
               <p>{alert}</p>
@@ -53,6 +56,7 @@ const Login = () => {
             </form>
 
             <a href="">Sign up here</a>
+
             </div>
         </div>
     );
