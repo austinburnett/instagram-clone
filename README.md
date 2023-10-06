@@ -35,14 +35,14 @@ https://wclofcjamd.execute-api.us-east-2.amazonaws.com/dev/expressApp/
 - [express-jwt]()
 - [jest](https://jestjs.io/docs/getting-started)
 
-- [ ] Extensions
-    - [ ] Create Reactjs frontend (In progress)
-    - [ ] CI/CD with aws, docker, and kubernetes 
-    - [x] Unit testing
-    - [x] Update README to show quickstart guide for easy demonstration
-    - [x] Docker dev enviroment
-    - [ ] Websocket for private messages
-    - [ ] Caching with redis
-    - [ ] Load balancing/testing
-    - [ ] Use a message queue like kafka or rabbitmq 
-    - [ ] Batch jobs
+### Extensions
+- [ ] Create Reactjs frontend (In progress)
+- [ ] CI/CD with aws, docker, and kubernetes 
+- [x] Unit testing
+- [x] Update README to show quickstart guide for easy demonstration
+- [x] Docker dev enviroment
+- [ ] Websocket for private messages
+- [ ] Caching with redis
+- [ ] Load balancing/testing
+- [ ] Use a message queue like kafka or rabbitmq 
+- [ ] Batch jobs
