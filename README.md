@@ -1,6 +1,6 @@
-# webapp-backend 
+# instagram-clone
 
-webapp-backend was built for the purpose of expanding my skills in backend develeopment and cloud technologies. The features provided resemble modern industry standards in Software Development and that of popular social media webapps used today.
+instagram-clone was built for the purpose of expanding my skills in backend develeopment and cloud technologies. I've implemented some, but not all, of the core features provided provided by Instagram.
 
 The code for local version of the project can be found at: [/Server/src](https://github.com/austinburnett/webapp-backend/tree/master/Server/src).
 Which includes the following features:
@@ -21,7 +21,7 @@ Note: for easy demonstration, I deployed the backend to aws Lambda. However, som
 ## Demo webapp-backend serverless api here: 
 https://wclofcjamd.execute-api.us-east-2.amazonaws.com/dev/expressApp/
 
-## Video demo of webapp-backend with Postman and Docker Compose
+## Video demo of instagram-clone with Postman and Docker Compose
 <img src="https://github.com/austinburnett/webapp-backend/blob/master/demo.gif"/> 
 
 ### Dependencies
