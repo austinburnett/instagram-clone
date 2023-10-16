@@ -39,26 +39,35 @@ const Login = () => {
         });
     }
     return(
-        <div className="login">
-            <div className="login-content">
+        <main>
+            <div className="blank"></div>
+            <div>
+            <div className="login">
 
-            
-            <div className="logo"></div>
+                <div className="logo"></div>
+                <br></br>
+                <br></br>
 
-            <form onSubmit={(event) => handleSubmit(event)}>
-              <input onChange={(event) => setEmail(event.target.value)} placeholder="Email"></input>
-              <p>{alert}</p>
-              <br></br>
-              <input onChange={(event) => setPassword(event.target.value)} placeholder="Password"></input>
-              <br></br>
-              <br></br>
-              <button>Login</button>
-            </form>
-
-            <a href="">Sign up here</a>
+                <form onSubmit={(event) => handleSubmit(event)}>
+                    <input onChange={(event) => setEmail(event.target.value)} placeholder="Email"></input>
+                    <p>{alert}</p>
+                    <br></br>
+                    <input onChange={(event) => setPassword(event.target.value)} placeholder="Password"></input>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <button>Login</button>
+                </form>
+                
 
             </div>
-        </div>
+
+            <div className="signup">
+                <a href="">Sign up here</a>
+            </div>
+            </div>
+
+        </main>
     );
 }
 
