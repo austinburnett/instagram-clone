@@ -27,25 +27,25 @@ main{
     padding: 1vh;
 }
 
+/*
+ * Shifts login to center of screen
+ * better way to do this?
+ */
 .blank{
     min-width: 10vw;
-    min-height: 10vw;
+    min-height: 6vw;
     width: 50%;
 }
 
+/*
+ * Login
+ */
 .login{
     border: 1px solid #cbcbcb;
     display: flex;
     flex-direction: column;
     padding-top: 2vw;
     padding-bottom: 2vw;
-}
-
-.login button{
-    background-color: #29ce07c4;
-    border-radius: 10px;
-    width: 11vw;
-    text-decoration: none;    
 }
 
 .logo{
@@ -56,9 +56,31 @@ main{
     margin: 1vw;
 }
 
+.login input{
+    width: 15vw;
+    height: 3.5vh;
+    border: 1px solid #cbcbcb;
+}
+
+.login button{
+    background-color: #1d9d03c4;
+    border-radius: 10px;
+    width: 15vw;
+    height: 3.5vh;
+    border: 0px;
+    font-size: 15px;
+    color: white;
+}
+
+
 .signup{
     border: 1px solid #cbcbcb;
     margin-top: 1vw;
     padding-top: 1vw;
     padding-bottom: 1vw;
+}
+
+.signup a{
+    text-decoration: none;
+    color: #1d9d03c4;
 }

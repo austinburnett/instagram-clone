@@ -50,20 +50,24 @@ const Login = () => {
 
                 <form onSubmit={(event) => handleSubmit(event)}>
                     <input onChange={(event) => setEmail(event.target.value)} placeholder="Email"></input>
-                    <p>{alert}</p>
+                    <br></br>
                     <br></br>
                     <input onChange={(event) => setPassword(event.target.value)} placeholder="Password"></input>
                     <br></br>
                     <br></br>
                     <br></br>
-                    <button>Login</button>
+                    <button>Log in</button>
+                    <p>{alert}</p>
+                    <br></br>
+                    <br></br>
+                    <br></br>
                 </form>
                 
 
             </div>
 
             <div className="signup">
-                <a href="">Sign up here</a>
+                <a href=""><strong>Sign up here</strong></a>
             </div>
             </div>
 
