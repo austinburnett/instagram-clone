@@ -16,15 +16,3 @@ Which includes the following features:
 
 ## Video demo of instagram-clone with Postman and Docker Compose
 <img src="https://github.com/austinburnett/webapp-backend/blob/master/demo.gif"/> 
-
-### Extensions
-- [ ] Create Reactjs frontend (In progress)
-- [x] CI with aws
-- [x] Unit testing
-- [x] Update README to show quickstart guide for easy demonstration
-- [x] Docker dev enviroment
-- [ ] Websocket for private messages
-- [ ] Caching with redis
-- [ ] Load balancing/testing
-- [ ] Use a message queue like kafka or rabbitmq 
-- [ ] Batch jobs
