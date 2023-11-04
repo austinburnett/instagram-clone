@@ -70,7 +70,6 @@ const Login = () => {
                 <a href=""><strong>Sign up here</strong></a>
             </div>
             </div>
-
         </main>
     );
 }
