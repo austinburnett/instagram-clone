@@ -67,7 +67,7 @@ const Login = () => {
             </div>
 
             <div className="signup">
-                <a href=""><strong>Sign up here</strong></a>
+                <p> Don't have an account? <a href=""><strong>Sign up here</strong></a> </p>
             </div>
             </div>
         </main>
