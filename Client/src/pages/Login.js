@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./styles.css";
 
@@ -7,6 +8,7 @@ const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [alert, setAlert] = useState("");
+    const navigate = useNavigate();
 
     function handleSubmit(formEvent){
         formEvent.preventDefault();
@@ -25,13 +27,12 @@ const Login = () => {
             }
         } 
 
-        axios(config).then((response) => {
+        axios(config).then(function(response){
             if(response.status == 200){
                 console.log(response);
                 localStorage.setItem("jwt", response.data.token);
                 setAlert("");
-                // redirect to home page
-                return;
+                navigate("/home");
             }
         }).catch((err) => {
             setAlert("Incorrect password provided.")
