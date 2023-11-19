@@ -6,7 +6,7 @@ const Profile = () => {
     // Return JSX
     return(
         <main>
-            <p>Home Page</p>
+            <p>Profile Page</p>
         </main>
     );
 }

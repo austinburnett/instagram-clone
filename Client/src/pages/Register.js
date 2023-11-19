@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./styles.css";
 
-const Login = () => {
+const Register = () => {
     // States
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -18,9 +18,10 @@ const Login = () => {
             "pass": password
         }
 
+        // Modify baseURL to be a env var
         let config = {
             method: "post",
-            baseURL: "http://localhost:3000/login",
+            baseURL: "http://localhost:3000/register",
             data: {
                 "email": `${data.email}`,
                 "pass": `${data.pass}`
@@ -28,16 +29,17 @@ const Login = () => {
         } 
 
         axios(config).then(function(response){
-            if(response.status == 200){
+            if(response.status == 201){
                 console.log(response);
-                localStorage.setItem("jwt", response.data.token);
+                //localStorage.setItem("jwt", response.data.token);
                 setAlert("");
                 // Don't set this route in stone
                 // Navigate to the next route in the stack
                 navigate("/home");
             }
+            else{ setAlert("Email address already in use."); }
         }).catch((err) => {
-            setAlert("Incorrect password provided.")
+            setAlert("Server error: Unable to create user.")
             console.error(err);
         });
     }
@@ -45,7 +47,7 @@ const Login = () => {
         <main>
             <div className="blank"></div>
             <div>
-            <div className="login">
+            <div className="register">
                 <div className="logo"></div>
                 <br></br>
                 <br></br>
@@ -57,20 +59,17 @@ const Login = () => {
                     <br></br>
                     <br></br>
                     <br></br>
-                    <button>Log in</button>
+                    <button>Sign up</button>
                     <p>{alert}</p>
                     <br></br>
                     <br></br>
                     <br></br>
                 </form>
             </div>
-            <div className="signup">
-                <p> Don't have an account? <a href="/register"><strong>Sign up here</strong></a> </p>
-            </div>
             </div>
         </main>
     );
 }
 
-// Login is entrypoint
-export default Login;
+// Register is entrypoint
+export default Register;
