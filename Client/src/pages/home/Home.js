@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
-import Banner from "./Banner.js";
+import Banner from "../shared/Banner.js";
+import Post from "../shared/Post.js";
 import "./home.css";
 
 
@@ -9,9 +10,8 @@ const Home = () => {
         <>
             <Banner />
             <main>
-                <p>Home Page</p>
-                <p>Home Page</p>
-                <p>Home Page</p>
+                <Post />
+                <Post />
             </main>
         </>
     );

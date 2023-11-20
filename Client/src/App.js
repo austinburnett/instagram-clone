@@ -1,9 +1,9 @@
-import "./App.css";
-import Login from "./pages/Login.js";
-import Home from "./pages/Home.js";
-import Profile from "./pages/Profile.js";
-import Register from "./pages/Register.js";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Login from "./pages/login/Login.js";
+import Home from "./pages/home/Home.js";
+import Profile from "./pages/profile/Profile.js";
+import Register from "./pages/register/Register.js";
+import "./App.css";
 
 function App() {
     return (

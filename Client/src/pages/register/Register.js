@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./styles.css";
+import "./register.css";
 
 const Register = () => {
     // States
     const [email, setEmail] = useState("");
+    const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [alert, setAlert] = useState("");
     const navigate = useNavigate();
@@ -15,6 +16,7 @@ const Register = () => {
 
         const data = {
             "email": email,
+            "username": username,
             "pass": password
         }
 
@@ -24,6 +26,7 @@ const Register = () => {
             baseURL: "http://localhost:3000/register",
             data: {
                 "email": `${data.email}`,
+                "username": `${data.username}`,
                 "pass": `${data.pass}`
             }
         } 
@@ -54,9 +57,9 @@ const Register = () => {
                 <form onSubmit={(event) => handleSubmit(event)}>
                     <input onChange={(event) => setEmail(event.target.value)} placeholder="Email"></input>
                     <br></br>
+                    <input onChange={(event) => setUsername(event.target.value)} placeholder="Username"></input>
                     <br></br>
                     <input onChange={(event) => setPassword(event.target.value)} placeholder="Password"></input>
-                    <br></br>
                     <br></br>
                     <br></br>
                     <button>Sign up</button>

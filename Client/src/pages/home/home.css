@@ -45,7 +45,7 @@ header li{
 }
 header a{
     color: black;
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid #cbcbcb;
     padding: .2rem;
     margin-left: 1rem;
 }

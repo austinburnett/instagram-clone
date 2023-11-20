@@ -49,7 +49,7 @@ main{
 }
 
 .logo{
-    background-image: url("./instaclone-logo.svg");
+    background-image: url("../shared/assets/instaclone-logo.svg");
     background-repeat: no-repeat;
     height: 10vh;
     width: 32vh;
