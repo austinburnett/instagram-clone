@@ -1,32 +1,11 @@
-*{
-    box-sizing: border-box;
-    font-family: 'serif';
-}
-html
-{
-    margin: 0;
-}
-html, body{
-    width: 100%;
-
-    /* FIXES BODY NOT BEING FULL PAGE */
-    min-height: 100%;
-
-    padding: 0;
-    border: 0;
-    margin: 0;
-    background-color: #efefef;
-    font-size: 1.2rem;
-
-    /* Let the text breathe */
-    line-height: 1.4;
-}
 /* Remove default settings */
 ul, li{
     border: 0;
     margin: 0;
+    padding: 0;
     list-style-type: none;
 }
+
 a{
     text-decoration: none;
 }
@@ -39,16 +18,19 @@ header{
     justify-items: center;
     padding: 1rem;
 }
+
 header li{
     font-size: 30px;
     display: inline;
 }
+
 header a{
     color: black;
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid #cbcbcb;
     padding: .2rem;
     margin-left: 1rem;
 }
+
 header a:hover{
     background-color: black;
     color: white;

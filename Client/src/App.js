@@ -3,6 +3,7 @@ import Login from "./pages/login/Login.js";
 import Home from "./pages/home/Home.js";
 import Profile from "./pages/profile/Profile.js";
 import Register from "./pages/register/Register.js";
+import CreatePost from "./pages/create-post/Create-Post.js";
 import "./App.css";
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
                 <Route path="/home" element={<Home />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/register" element={<Register />} />
+                <Route path="/createpost" element={<CreatePost />} />
             </Routes>
         </BrowserRouter>
     );

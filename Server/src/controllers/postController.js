@@ -27,7 +27,7 @@ exports.createPost = (req, res) => {
         try {
             const newPost = new post({
                 username: req.username,
-                image: "this is an image",
+                image: `${ fields.image }`,
                 caption: `${ fields.caption }`,
             });
 

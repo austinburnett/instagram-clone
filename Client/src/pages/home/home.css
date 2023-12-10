@@ -1,11 +1,7 @@
-*{
-    box-sizing: border-box;
-    font-family: 'serif';
-}
-html
-{
+html{
     margin: 0;
 }
+
 html, body{
     width: 100%;
 
@@ -21,43 +17,11 @@ html, body{
     /* Let the text breathe */
     line-height: 1.4;
 }
-/* Remove default settings */
-ul, li{
-    border: 0;
-    margin: 0;
-    list-style-type: none;
-}
-a{
-    text-decoration: none;
-}
-
-/* HEADER WITH NAV BAR */
-header{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-items: center;
-    padding: 1rem;
-}
-header li{
-    font-size: 30px;
-    display: inline;
-}
-header a{
-    color: black;
-    border-bottom: 2px solid #cbcbcb;
-    padding: .2rem;
-    margin-left: 1rem;
-}
-header a:hover{
-    background-color: black;
-    color: white;
-}
 
 /* MAIN FLEX CONTAINER */
 main{
+    padding: 1rem;
     display: flex;
     flex-direction: column;
-    margin: 2rem;
     align-items: center;
 }

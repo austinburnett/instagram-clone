@@ -29,11 +29,10 @@ const Login = () => {
 
         axios(config).then(function(response){
             if(response.status == 200){
-                console.log(response);
+                //console.log(response);
                 localStorage.setItem("jwt", response.data.token);
                 setAlert("");
                 // Don't set this route in stone
-                // Navigate to the next route in the stack
                 navigate("/home");
             }
         }).catch((err) => {

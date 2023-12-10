@@ -1,79 +1,28 @@
 import React, { useState } from "react";
+import PostLikeButton from "./PostLikeButton.js";
+import PostCommentButton from "./PostCommentButton.js";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./assets/post.css";
 
-const Post = () => {
-    // States
-    const [email, setEmail] = useState("");
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-    const [alert, setAlert] = useState("");
-    const navigate = useNavigate();
-
-    function handleSubmit(formEvent){
-        formEvent.preventDefault();
-
-        // Grab from token info
-        const data = {
-            "username": email,
-            "image": username,
-            "caption": password,
-            "likes": [],
-            "comments": []
-        }
-
-        // Modify baseURL to be a env var
-        let config = {
-            method: "post",
-            baseURL: "http://localhost:3000/register",
-            data: {
-                "email": `${data.email}`,
-                "username": `${data.username}`,
-                "pass": `${data.pass}`
-            }
-        } 
-
-        axios(config).then(function(response){
-            if(response.status == 201){
-                console.log(response);
-                //localStorage.setItem("jwt", response.data.token);
-                setAlert("");
-                // Don't set this route in stone
-                // Navigate to the next route in the stack
-                navigate("/home");
-            }
-            else{ setAlert("Email address already in use."); }
-        }).catch((err) => {
-            setAlert("Server error: Unable to create user.")
-            console.error(err);
-        });
-    }
+// I would like this to take in props in order to display
+// everything needed that a post has.
+// Actually, may not want to share state for a component since each post needs
+// to have its own state
+const Post = ({postUser, postImage, postCaption, postLike, postComments}) => {
     return(
-        <main>
-            <div className="blank"></div>
-            <div>
+        <>
             <div className="post">
-                <div className="logo"></div>
-                <br></br>
-                <br></br>
-                <form onSubmit={(event) => handleSubmit(event)}>
-                    <input onChange={(event) => setEmail(event.target.value)} placeholder="Email"></input>
-                    <br></br>
-                    <input onChange={(event) => setUsername(event.target.value)} placeholder="Username"></input>
-                    <br></br>
-                    <input onChange={(event) => setPassword(event.target.value)} placeholder="Password"></input>
-                    <br></br>
-                    <br></br>
-                    <button>Sign up</button>
-                    <p>{alert}</p>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                </form>
+                <p>{ postUser }</p>
+                <img src={ postImage } />
+                <PostLikeButton/>
+                <PostCommentButton/>
+                <br />
+                <p>{ postCaption }</p>
+                <br />
+                <p>Comments.... Loading</p>
             </div>
-            </div>
-        </main>
+        </>
     );
 }
 
