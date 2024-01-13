@@ -10,6 +10,15 @@ import "./assets/post.css";
 // Actually, may not want to share state for a component since each post needs
 // to have its own state
 const Post = ({postUser, postImage, postCaption, postLike, postComments}) => {
+    //console.log(postComments)
+    let commentsList = postComments.map((postComments) => {
+        /*
+        <li key={postComments._id} >
+            
+        </li>
+        */
+    })
+    
     return(
         <>
             <div className="post">
@@ -20,7 +29,7 @@ const Post = ({postUser, postImage, postCaption, postLike, postComments}) => {
                 <br />
                 <p>{ postCaption }</p>
                 <br />
-                <p>Comments.... Loading</p>
+                <p>{}</p>
             </div>
         </>
     );

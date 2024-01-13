@@ -25,7 +25,7 @@ const Home = () => {
     if(posts == null){
         axios.request(request).then((response) => {
             const postDataList = response.data.posts;
-            console.log(postDataList)
+            console.log(postDataList);
             const postList = postDataList.map(postDataList => 
                 <Post postUser={ postDataList.username }
                       postImage={ postDataList.image }

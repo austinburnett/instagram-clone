@@ -10,10 +10,6 @@ const post = require("../models/postModel");
  * app crashes when given wrong id - getPost
  * verify found post is not null - likePost
  * check if user matches post owner
- // remove like
- // it would be much faster to store a boolean
- // to see if a user liked the post
- // likes array size isnt updated when removing like
  */ 
 
 // Create Post
@@ -44,7 +40,7 @@ exports.createPost = (req, res) => {
 // Get Post by id
 exports.getPost = async (req, res) => {
     try{
-        const currPost = await post.findById(req.params.id);
+        const currPost = await post.findById(req.params.id).populate("comments");
         if(currPost == null){
             throw new Error("Check post id " + req.params.id);
         }
@@ -58,7 +54,7 @@ exports.getPost = async (req, res) => {
 // Get All Posts
 exports.getAllPost = async (req, res) => {
     try{
-        const posts = await post.find();
+        const posts = await post.find().populate("comments");
         if(posts == null){
             throw new Error("Error retrieving posts");
         }

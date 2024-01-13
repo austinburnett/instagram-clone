@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const comments = require("./commentModel.js");
 
 /*
  * postSchema
