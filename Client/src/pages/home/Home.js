@@ -29,7 +29,8 @@ const Home = () => {
             const postDataList = response.data.posts;
 
             const postList = postDataList.map(postDataList => 
-                <Post postUser={ postDataList.username }
+                <Post postId={ postDataList._id }
+                    postUser={ postDataList.username }
                     postImage={ postDataList.image }
                     postCaption={ postDataList.caption }
                     postLike={ postDataList.like }

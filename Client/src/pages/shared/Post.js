@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./assets/post.css";
 
-const Post = ({postUser, postImage, postCaption, postLike, postComments}) => {
+const Post = ({postId, postUser, postImage, postCaption, postLike, postComments}) => {
     let commentsList = postComments.map(postComments => 
         <li key={postComments._id} >
             {postComments.username}
@@ -20,7 +20,7 @@ const Post = ({postUser, postImage, postCaption, postLike, postComments}) => {
                 <p>{ postUser }</p>
                 <img src={ postImage } />
                 <PostLikeButton/>
-                <PostCommentButton/>
+                <PostCommentButton postId={ postId }/>
                 <br />
                 <p>{ postCaption }</p>
                 <br />
