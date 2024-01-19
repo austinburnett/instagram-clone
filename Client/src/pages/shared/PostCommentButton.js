@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const PostCommentButton = ({postId}) =>{
+const PostCommentButton = ({postId, postUser}) =>{
     const [color, setColor] = useState("white");
     const [data, setData] = useState(null);
+    const [displayStatus, setDisplayStatus] = useState("none");
 
     let style = {
         backgroundColor: color,
         padding: "10px"
+    }
+
+    let commentInputStyle = {
+        display: displayStatus
     }
 
     // Modify baseURL to be a env var
@@ -22,12 +27,14 @@ const PostCommentButton = ({postId}) =>{
     } 
 
     function handleClick(){
-        // Open a textbox for user to type
-         
+        setDisplayStatus("inline");
         setColor("green");
     }
 
     function onSubmit(){
+        setDisplayStatus("none");
+        setColor("white");
+
         console.log(data);
         axios(request).then((response) => {
             console.log(response);
@@ -35,22 +42,22 @@ const PostCommentButton = ({postId}) =>{
                 if(err.response.status == 401){
                     navigate("/login");
                 }
-            });
+        });
+
+        // Append an li element to ul with comment data
+        const commentList = document.getElementById("comments")
+        const li = document.createElement("li");
+        li.appendChild(document.createTextNode(postUser + ": " + data));
+        commentList.appendChild(li);
     }
 
-    // 1. left off figuring out a solution
-    // for adding a dynamic text box so that a user can input text
-    // and submit that data to create a comment
-    //
-    // 2. Need to add http body to request
-    //
-    // 3. Need to add state so that comment text is updated
+    // 1. Need to add state so that comment text is updated
     return(
         <>
             <button style={ style } onClick={ handleClick }>Comment</button>
             <br></br>
-            <input onChange={(event) => setData(event.target.value)}></input>
-            <button onClick={onSubmit}>Post</button>
+            <input style={commentInputStyle} onChange={(event) => setData(event.target.value)}></input>
+            <button style={commentInputStyle} onClick={onSubmit}>Post</button>
         </>
     );
 }

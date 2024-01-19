@@ -20,11 +20,11 @@ const Post = ({postId, postUser, postImage, postCaption, postLike, postComments}
                 <p>{ postUser }</p>
                 <img src={ postImage } />
                 <PostLikeButton/>
-                <PostCommentButton postId={ postId }/>
+                <PostCommentButton postId={ postId } postUser={postUser}/>
                 <br />
                 <p>{ postCaption }</p>
                 <br />
-                <ul>{ commentsList }</ul>
+                <ul id="comments">{ commentsList }</ul>
             </div>
         </>
     );
