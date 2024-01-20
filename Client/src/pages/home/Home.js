@@ -17,7 +17,6 @@ const Home = () => {
         console.log(err);
     }
 
-    // Modify baseURL to be a env var
     let request = {
         method: "get",
         baseURL: "http://localhost:3000/posts",
@@ -33,7 +32,7 @@ const Home = () => {
                     postUser={ postDataList.username }
                     postImage={ postDataList.image }
                     postCaption={ postDataList.caption }
-                    postLike={ postDataList.like }
+                    postLikes={ postDataList.likes }
                     postComments={ postDataList.comments }
                     key={ postDataList._id }
                 />
