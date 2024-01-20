@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import PostLikeButton from "./PostLikeButton.js";
 import PostCommentButton from "./PostCommentButton.js";
 import { useNavigate } from "react-router-dom";
+import { useId } from "react";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 import "./assets/post.css";
@@ -10,6 +11,7 @@ const Post = ({postId, postUser, postImage, postCaption, postLikes, postComments
     const [numLikes, setNumLikes] = useState(postLikes.length);
     const [color, setColor] = useState("white");
     const [isLiked, setIsLiked] = useState(null);
+    const uid = useId();
 
     let decodedToken = localStorage.jwt;
     try{
@@ -65,11 +67,11 @@ const Post = ({postId, postUser, postImage, postCaption, postLikes, postComments
                 <img src={ postImage } />
                 <PostLikeButton postLikes={ numLikes } likePost={ handleClick }
                                 buttonColor={ color }/>
-                <PostCommentButton postId={ postId } postUser={postUser}/>
+                <PostCommentButton postId={ postId } postUser={postUser} uid={uid}/>
                 <br />
                 <p>{ postCaption }</p>
                 <br />
-                <ul id="comments">{ commentsList }</ul>
+                <ul id={ "comments-"+uid }>{ commentsList }</ul>
             </div>
         </>
     );

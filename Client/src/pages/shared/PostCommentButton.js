@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 
-const PostCommentButton = ({postId, postUser}) =>{
+const PostCommentButton = ({postId, postUser, uid}) =>{
     const [color, setColor] = useState("white");
     const [data, setData] = useState(null);
     const [displayStatus, setDisplayStatus] = useState("none");
@@ -15,7 +16,6 @@ const PostCommentButton = ({postId, postUser}) =>{
         display: displayStatus
     }
 
-    // Modify baseURL to be a env var
     let request = {
         method: "post",
         baseURL: `http://localhost:3000/posts/${postId}/comments/`,
@@ -25,6 +25,13 @@ const PostCommentButton = ({postId, postUser}) =>{
         },
         data: `${data}`
     } 
+
+    let decodedToken = localStorage.jwt;
+    try{
+        decodedToken = jwtDecode(decodedToken);
+    } catch(err){
+        console.log(err);
+    }
 
     function handleClick(){
         setDisplayStatus("inline");
@@ -45,13 +52,12 @@ const PostCommentButton = ({postId, postUser}) =>{
         });
 
         // Append an li element to ul with comment data
-        const commentList = document.getElementById("comments")
+        const commentList = document.getElementById("comments-"+ uid);
         const li = document.createElement("li");
-        li.appendChild(document.createTextNode(postUser + ": " + data));
+        li.appendChild(document.createTextNode(decodedToken.username + ": " + data));
         commentList.appendChild(li);
     }
 
-    // 1. Need to add state so that comment text is updated
     return(
         <>
             <button style={ style } onClick={ handleClick }>Comment</button>
