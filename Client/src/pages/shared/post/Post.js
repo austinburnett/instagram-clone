@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useId } from "react";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
-import "./assets/post.css";
+import "./post.css";
 
 const Post = ({postId, postUser, postImage, postCaption, postLikes, postComments}) => {
     const [numLikes, setNumLikes] = useState(postLikes.length);

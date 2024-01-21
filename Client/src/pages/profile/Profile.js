@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Banner from "../shared/Banner.js";
+import Banner from "../shared/banner/Banner.js";
 import axios from "axios";
 import CreatePostButton from "./CreatePostButton.js";
 

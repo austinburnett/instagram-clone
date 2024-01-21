@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
-import Banner from "../shared/Banner.js";
-import Post from "../shared/Post.js";
+import Banner from "../shared/banner/Banner.js";
+import Post from "../shared/post/Post.js";
 import "./home.css";
 
 const Home = () => {
