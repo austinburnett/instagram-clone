@@ -2,16 +2,15 @@ import React, { useState } from "react";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 
-const PostCommentButton = ({postId, postUser, uid}) =>{
-    const [color, setColor] = useState("white");
+const PostCommentButton = ({postId, id}) =>{
+    const [buttonColor, setButtonColor] = useState("white");
     const [data, setData] = useState(null);
     const [displayStatus, setDisplayStatus] = useState("none");
 
-    let style = {
-        backgroundColor: color,
+    let commentButtonStyle = {
+        backgroundColor: buttonColor,
         padding: "10px"
     }
-
     let commentInputStyle = {
         display: displayStatus
     }
@@ -35,12 +34,12 @@ const PostCommentButton = ({postId, postUser, uid}) =>{
 
     function handleClick(){
         setDisplayStatus("inline");
-        setColor("green");
+        setButtonColor("green");
     }
 
     function onSubmit(){
         setDisplayStatus("none");
-        setColor("white");
+        setButtonColor("white");
 
         console.log(data);
         axios(request).then((response) => {
@@ -52,7 +51,7 @@ const PostCommentButton = ({postId, postUser, uid}) =>{
         });
 
         // Append an li element to ul with comment data
-        const commentList = document.getElementById("comments-"+ uid);
+        const commentList = document.getElementById("comments-"+ id);
         const li = document.createElement("li");
         li.appendChild(document.createTextNode(decodedToken.username + ": " + data));
         commentList.appendChild(li);
@@ -60,7 +59,7 @@ const PostCommentButton = ({postId, postUser, uid}) =>{
 
     return(
         <>
-            <button style={ style } onClick={ handleClick }>Comment</button>
+            <button style={ commentButtonStyle } onClick={ handleClick }>Comment</button>
             <br></br>
             <input style={commentInputStyle} onChange={(event) => setData(event.target.value)}></input>
             <button style={commentInputStyle} onClick={onSubmit}>Post</button>

@@ -5,6 +5,7 @@ import { jwtDecode } from "jwt-decode";
 import Banner from "../shared/banner/Banner.js";
 import Post from "../shared/post/Post.js";
 import "./home.css";
+import createRequestConfig from "../shared/post/createRequestConfig.js";
 
 const Home = () => {
     const [posts, setPosts] = useState(null);
@@ -17,11 +18,7 @@ const Home = () => {
         console.log(err);
     }
 
-    let request = {
-        method: "get",
-        baseURL: "http://localhost:3000/posts",
-        headers: {"Authorization": `Bearer ${localStorage.jwt}`},
-    } 
+    const request = createRequestConfig("get", "posts");
 
     if(posts == null){
         axios.request(request).then((response) => {

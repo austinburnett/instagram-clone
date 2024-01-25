@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+/*
+ * CreatePostButton
+ * @desc Takes user to the create post page.
+ */
 const CreatePostButton = () => {
-    // usenavigate to change url to /createpost
     const navigator = useNavigate();
 
     function handleClick(){

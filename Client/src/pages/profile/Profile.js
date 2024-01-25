@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Banner from "../shared/banner/Banner.js";
 import axios from "axios";
+import Banner from "../shared/banner/Banner.js";
 import CreatePostButton from "./CreatePostButton.js";
 
 const Profile = () => {
@@ -10,6 +10,7 @@ const Profile = () => {
         <>
             <Banner />
             <main>
+                <p>User's username</p>
                 <p>Profile Page</p>
                 <CreatePostButton />
             </main>

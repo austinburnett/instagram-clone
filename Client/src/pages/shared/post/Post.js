@@ -6,6 +6,7 @@ import { useId } from "react";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 import "./post.css";
+import createRequestConfig from "./createRequestConfig.js";
 
 const Post = ({postId, postUser, postImage, postCaption, postLikes, postComments}) => {
     const [numLikes, setNumLikes] = useState(postLikes.length);
@@ -20,6 +21,8 @@ const Post = ({postId, postUser, postImage, postCaption, postLikes, postComments
         console.log(err);
     }
 
+    const request = createRequestConfig("patch", `posts/${postId}/like`);
+
     let commentsList = postComments.map(postComments => 
         <li key={postComments._id} >
             {postComments.username}
@@ -28,20 +31,13 @@ const Post = ({postId, postUser, postImage, postCaption, postLikes, postComments
         </li>
     );
 
-    let request = {
-        method: "patch",
-        baseURL: `http://localhost:3000/posts/${postId}/like`,
-        headers: {"Authorization": `Bearer ${localStorage.jwt}`},
-    } 
-
     if(isLiked == null){
         postLikes.forEach(like => {
             if(like.username == decodedToken.username){
                 setColor("red");
                 setIsLiked(true);
             }
-        })
-
+        });
     }
     
     function handleClick(){
@@ -67,11 +63,11 @@ const Post = ({postId, postUser, postImage, postCaption, postLikes, postComments
                 <img src={ postImage } />
                 <PostLikeButton postLikes={ numLikes } likePost={ handleClick }
                                 buttonColor={ color }/>
-                <PostCommentButton postId={ postId } postUser={postUser} uid={uid}/>
+                <PostCommentButton postId={ postId } id={uid}/>
                 <br />
                 <p>{ postCaption }</p>
                 <br />
-                <ul id={ "comments-"+uid }>{ commentsList }</ul>
+                <ul id={ "comments-" + uid }>{ commentsList }</ul>
             </div>
         </>
     );
