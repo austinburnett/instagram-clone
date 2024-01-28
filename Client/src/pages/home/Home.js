@@ -4,8 +4,8 @@ import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import Banner from "../shared/banner/Banner.js";
 import Post from "../shared/post/Post.js";
-import "./home.css";
 import createRequestConfig from "../shared/post/createRequestConfig.js";
+import "./home.css";
 
 const Home = () => {
     const [posts, setPosts] = useState(null);

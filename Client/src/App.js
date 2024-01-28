@@ -12,7 +12,7 @@ function App() {
             <Routes>
                 <Route path="/login" element={<Login />} />
                 <Route path="/home" element={<Home />} />
-                <Route path="/profile" element={<Profile />} />
+                <Route path="/profile/:userId" element={<Profile />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/createpost" element={<CreatePost />} />
             </Routes>
@@ -20,5 +20,4 @@ function App() {
     );
 }
 
-// App entrypoint
 export default App;

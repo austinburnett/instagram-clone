@@ -44,7 +44,10 @@ const PostLikeButton = ({postId, likes}) =>{
             setIsLiked(true);
         }
         axios.request(request).then((response) => {
-            console.log(response);
+            if(response.status == 401){
+                console.error("Unauthorized");
+                useNavigate("/login");
+            }
         });
     }
 
