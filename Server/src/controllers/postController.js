@@ -53,6 +53,7 @@ exports.getPost = async (req, res) => {
 
 // Get All Posts
 exports.getAllPost = async (req, res) => {
+    console.log(req.query)
     try{
         const posts = await post.find().populate("comments");
         if(posts == null){
@@ -77,7 +78,6 @@ exports.updatePost = async (req, res) => {
     
     try {
         post.findByIdAndUpdate(req.params.id, {
-            // Needs callback to execute 
             image: `${ fields.content }`,
             caption: `${ fields.caption }`,
         }, (err, result) => {

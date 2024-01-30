@@ -3,9 +3,11 @@ const router = express.Router();
 const postController = require("../../controllers/postController");
 const comments = require("./comments.js");
 const setPostId = require("../../middleware/setPostId.js");
+
 /**
  * posts.js 
- * @desc Handles routes for post resources
+ * @desc Maps a route to a given post controller that 
+ * handles the CRUD logic for the post resource.
  */
 
 // Get ALL posts 

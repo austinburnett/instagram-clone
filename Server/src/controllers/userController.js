@@ -6,12 +6,14 @@ let jwt = require("jsonwebtoken");
 /**
  * userController.js
  * @desc Export functions that handles req/res logic for users
+ * @TODO:
+ * Secret for signing jwt
  */ 
 
 /** 
  * loginForm
  * @desc Handles login for a user 
- * @returns { Token } JWT on success   
+ * @response { Token } JWT on success   
  */
 exports.loginForm = (req, res, next) => {    
   const form = formidable();
@@ -29,9 +31,6 @@ exports.loginForm = (req, res, next) => {
       }
 
       else if(await user.authenticate(userFound.password, fields.pass)) {
-        // Logging
-        console.log("user found for login in user controller:" + userFound);
-
         const token = jwt.sign({
           audience: `${ userFound._id }`,
           username: `${ userFound.username }`,
@@ -72,12 +71,15 @@ exports.registerForm = (req, res, next) => {
       const hash = await user.argon2id(`${ fields.pass }`);
       const newUser = new user({ email:`${ fields.email }`, username: `${ fields.username }`, password:`${ hash }`});
       newUser.save();
-      res.status(201).send("New User stored in db");
+      res.status(201).json("New User stored in db");
     }  
   });
 }
 
-// Get all users
+/**
+ * getUsers
+ * @desc Retrieves all users stored in db
+ */
 exports.getUsers = async (req, res) => {
   const users = await user.find();
   res.status(201).json({ users });
@@ -93,15 +95,18 @@ exports.getUser = async (req, res) => {
         res.status(201).json({ queryUser });
     }catch(error){
         console.error(error);
-        res.status(404).send("Error with getting user");
+        res.status(404).json("Error with getting user");
     }
 }
 
-// Update user data
+/**
+ * updateUser
+ * @desc Updates all user data except password
+ * @TODO: 
+ * Enable updates to password
+ * Verify post found is not null
+ */
 exports.updateUser = (req, res) => {
-  // Allow password to be changed
-  // we'll have to hash it again
-  // also we'll need email verification, username verification etc
   const form = formidable();
   form.parse(req, async (formErr, fields) => {
     if(formErr) {
@@ -110,7 +115,6 @@ exports.updateUser = (req, res) => {
     }
     
     try {
-        // Verify post found is not null
         user.findByIdAndUpdate(req.params.id, {
             email: `${ fields.email}`,
             username: `${ fields.username }`,
@@ -119,7 +123,6 @@ exports.updateUser = (req, res) => {
             if(err){
                 console.error(err);
             }
-            // Needs callback to execute query
             // this still gives null
             console.log(user);
         });
@@ -134,8 +137,12 @@ exports.updateUser = (req, res) => {
   });
 }
 
+/**
+ * deleteUser
+ * @desc Delete all user data
+ * @TODO: Delete all post and comment data made by user
+ */
 exports.deleteUser = async (req, res) => {
-    // Delete all posts and comments user has made also
     try{
         const userFound = await user.findByIdAndDelete(req.params.id);
         if(userFound == null){
