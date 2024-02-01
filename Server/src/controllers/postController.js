@@ -47,23 +47,27 @@ exports.getPost = async (req, res) => {
         res.status(201).json({ currPost });
     }catch(err){
         console.error(err);
-        res.status(404).send("Error getting post");
+        res.status(404).json("Error getting post");
     } 
 }
 
 // Get All Posts
 exports.getAllPost = async (req, res) => {
-    console.log(req.query)
     try{
-        const posts = await post.find().populate("comments");
+        let posts = null;
+        if(req.query.username != null){
+            query = { username: req.query.username }
+            posts = await post.find(query).populate("comments");
+        }
+        else{posts = await post.find().populate("comments");}
+
         if(posts == null){
             throw new Error("Error retrieving posts");
         }
-
         res.status(201).json({ posts });
     } catch(err){
         console.error(err);
-        res.status(404).send("Error getting all posts");
+        res.status(404).json("Error getting all posts");
     }
 }
 

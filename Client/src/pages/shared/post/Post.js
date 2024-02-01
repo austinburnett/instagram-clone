@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import { useId } from "react";
 import PostLikeButton from "./PostLikeButton.js";
 import PostCommentButton from "./PostCommentButton.js";
-import { useId } from "react";
+import PostImage from "./PostImage.js";
 import "./post.css";
 
 const Post = ({postId, postUser, postImage, postCaption, postLikes, postComments}) => {
@@ -24,9 +25,9 @@ const Post = ({postId, postUser, postImage, postCaption, postLikes, postComments
         <>
             <div className="post">
                 <p>{ postUser }</p>
-                <img src={ postImage } />
+                <PostImage image={ postImage } postCreatorUri={postUser} />
                 <PostLikeButton postId={ postId } likes={ usersLiked } />
-                <PostCommentButton postId={ postId } id={ uid }/>
+                <PostCommentButton postId={ postId } id={ uid } />
                 <br />
                 <p>{ postCaption }</p>
                 <br />
