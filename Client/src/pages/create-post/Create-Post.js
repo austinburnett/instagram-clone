@@ -44,7 +44,7 @@ const CreatePost = () => {
         axios(request).then(function(response){
             if(response.status == 201){
                 setAlert("");
-                navigate("/profile");
+                navigate(`/profile/${data.username}`);
             }
             else{ setAlert("Some error."); }
         }).catch((err) => {
