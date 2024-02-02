@@ -27,7 +27,7 @@ exports.loginForm = (req, res, next) => {
       const userFound = await user.findOne({email:`${ fields.email }`});
 
       if(!userFound) { 
-        res.status(401).send("User not found");
+        res.status(401).json("User not found");
       }
 
       else if(await user.authenticate(userFound.password, fields.pass)) {
@@ -39,7 +39,7 @@ exports.loginForm = (req, res, next) => {
           algorithm: "HS256",
           expiresIn: "1 hour",
         });
-        res.json( { token } );
+        res.status(200).json( { token } );
       }
       else {
         res.sendStatus(401);
@@ -65,7 +65,7 @@ exports.registerForm = (req, res, next) => {
     const emailInUse = await user.findOne({email: `${ fields.email }`});
     
     if(emailInUse) {
-      res.send(`User found with the same email address: ${ emailInUse.email }`);
+      res.json(`User found with the same email address: ${ emailInUse.email }`);
     }
     else {
       const hash = await user.argon2id(`${ fields.pass }`);
@@ -82,7 +82,7 @@ exports.registerForm = (req, res, next) => {
  */
 exports.getUsers = async (req, res) => {
   const users = await user.find();
-  res.status(201).json({ users });
+  res.status(200).json({ users });
 }
 
 // Get user by id
@@ -92,7 +92,7 @@ exports.getUser = async (req, res) => {
         if(queryUser == null){
             throw new Error("Check user id ", req.params.id);
         }
-        res.status(201).json({ queryUser });
+        res.status(200).json({ queryUser });
     }catch(error){
         console.error(error);
         res.status(404).json("Error with getting user");
@@ -127,12 +127,12 @@ exports.updateUser = (req, res) => {
             console.log(user);
         });
 
-        res.status(201).send("User updated");
+        res.status(201).json("User updated");
         console.log("User updated with id:" + " " + req.params.id);
       
     } catch(err) {
       console.error(err);
-      res.sendStatus(500);
+      res.sendStatus(404);
     }
   });
 }
@@ -148,10 +148,10 @@ exports.deleteUser = async (req, res) => {
         if(userFound == null){
             throw new Error("Check user id ", req.params.id);
         }
-        res.status(200).send("User deleted");
+        res.status(200).json("User deleted");
     }catch(err){
         console.error(err);
-        res.status(404).send("Error deleteing user");
+        res.status(404).json("Error deleteing user");
     } 
 }
 

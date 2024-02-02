@@ -33,10 +33,10 @@ exports.createComment = async (req, res) => {
         currentPost.comments.push(commentId);
         await currentPost.save();
 
-        res.status(201).send("Comment created");
+        res.status(201).json("Comment created");
     } catch(err){
         console.error(err);
-        res.status(404).send("Error with creating comment");
+        res.status(404).json("Error with creating comment");
     }
 }
 
@@ -48,10 +48,10 @@ exports.getAllComments = async (req, res) => {
         if(currentPost == null){
             throw new Error("Check post id ", req.post_id);
         }
-        res.status(201).json(currentPost.comments);
+        res.status(200).json(currentPost.comments);
     } catch(err){
         console.error(err);
-        res.status(404).send("Error with retrieving all comments");
+        res.status(404).json("Error with retrieving all comments");
     }
 }
 
@@ -75,10 +75,10 @@ exports.getComment = async (req, res) => {
             throw new Error("Check comment id: " + req.params.id); 
         }
 
-        res.status(201).json(comment);
+        res.status(200).json(comment);
     } catch(err){
         console.error(err);
-        res.status(404).send("Error retrieving comment");
+        res.status(404).json("Error retrieving comment");
     }
 }
 
@@ -108,10 +108,10 @@ exports.updateComment = async (req, res) => {
         // You need to save top level document
         await comment.save();
 
-        res.status(200).send("Comment updated");
+        res.status(200).json("Comment updated");
     } catch(err){
         console.error(err);
-        res.status(404).send("Error updating comment");
+        res.status(404).json("Error updating comment");
     }
 }
 
@@ -140,9 +140,9 @@ exports.deleteComment = async (req, res) => {
         await currPost.comments.pull({ _id: req.params.id });
         await currPost.save();
 
-        res.status(200).send("Comment deleted");
+        res.status(200).json("Comment deleted");
     } catch(err){
         console.error(err);
-        res.status(404).send("Error deleting comment");
+        res.status(404).json("Error deleting comment");
     }
 }

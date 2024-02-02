@@ -27,12 +27,12 @@ exports.createPost = (req, res) => {
                 caption: `${ fields.caption }`,
             });
 
-            res.status(201).send("Post created");
+            res.status(201).json("Post created");
             await newPost.save();
 
         } catch(err) {
             console.error(err);
-            res.status(500).send("Error creating post");
+            res.status(404).json("Error creating post");
         }
     });
 }
@@ -44,7 +44,7 @@ exports.getPost = async (req, res) => {
         if(currPost == null){
             throw new Error("Check post id " + req.params.id);
         }
-        res.status(201).json({ currPost });
+        res.status(200).json({ currPost });
     }catch(err){
         console.error(err);
         res.status(404).json("Error getting post");
@@ -64,7 +64,7 @@ exports.getAllPost = async (req, res) => {
         if(posts == null){
             throw new Error("Error retrieving posts");
         }
-        res.status(201).json({ posts });
+        res.status(200).json({ posts });
     } catch(err){
         console.error(err);
         res.status(404).json("Error getting all posts");
@@ -89,16 +89,16 @@ exports.updatePost = async (req, res) => {
                 console.error(err);
             }
             else if(result == null){
-                res.status(404).send("Error updating post");
+                res.status(404).json("Error updating post");
                 throw new Error("Error with updating post with id: " + req.params.id);
             }
             else{
-                res.status(201).send("Post updated");
+                res.status(201).json("Post updated");
             }
         });
     } catch(err) {
       console.error(err);
-      res.status(500).send("Error updating post");
+      res.status(404).json("Error updating post");
     }
   });
 }
@@ -112,10 +112,10 @@ exports.deletePost = async (req, res) => {
             throw new Error("Error deleting post, check id: " + req.params.id);
         }
 
-        res.status(200).send("Post deleted");
+        res.status(200).json("Post deleted");
     }catch(err){
         console.error(err);
-        res.status(404).send("Error with deleting post");
+        res.status(404).json("Error with deleting post");
     } 
 }
 
@@ -129,7 +129,7 @@ exports.likePost = async (req, res) => {
                 console.error(err);
             }
             else if(result == null){
-                res.status(404).send("Error liking post");
+                res.status(404).json("Error liking post");
                 throw new Error("Error liking post, check id: " + req.params.id);
             }
             let isLiked = 0;
@@ -147,10 +147,10 @@ exports.likePost = async (req, res) => {
                 });
             }
             await result.save();
-            res.status(200).send("Post likes updated");
+            res.status(201).json("Post likes updated");
         });
     } catch(err){
         console.error(err);
-        res.status(404).send("Error with post like");
+        res.status(404).json("Error with post like");
     } 
 }
