@@ -4,6 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "style": "prettier . --check",
     "test": "jest --config=jest.config.js --verbose",
     "build": "node ./app.js",
     "start": "nodemon ./app.js"
@@ -22,6 +23,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.3.4",
     "nodemon": "^2.0.16",
+    "prettier": "^3.2.4",
     "serverless-http": "^3.2.0"
   }
 }

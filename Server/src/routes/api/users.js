@@ -3,11 +3,11 @@ const router = express.Router();
 const userController = require("../../controllers/userController");
 
 /**
- * users.js 
+ * users.js
  * @desc Handles logic for user resource
  */
 
-router.get('/', userController.getAllUsers);
+router.get("/", userController.getAllUsers);
 
 router.get("/:id", userController.getUser);
 

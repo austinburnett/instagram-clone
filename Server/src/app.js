@@ -9,7 +9,7 @@ const app = express();
 dotenv.config();
 
 app.listen(process.env.PORT, () => {
-    console.log(`Listening on port ${ process.env.PORT }`);
+  console.log(`Listening on port ${process.env.PORT}`);
 });
 
 app.use(cors());
@@ -19,14 +19,14 @@ app.use("/", routes);
 mongoUtil.connect(() => {});
 
 // Close all connections when the application recieves SIGINT signal
-process.on("SIGINT", async() => {
-    db = mongoUtil.getDb();
-    try{
-        await db.disconnect();
-    } catch(err){
-        console.error(err);
-    } finally{
-        console.log("\nMongoDB connections closed.");
-        process.exit();
-    }
+process.on("SIGINT", async () => {
+  db = mongoUtil.getDb();
+  try {
+    await db.disconnect();
+  } catch (err) {
+    console.error(err);
+  } finally {
+    console.log("\nMongoDB connections closed.");
+    process.exit();
+  }
 });

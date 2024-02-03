@@ -9,42 +9,41 @@ jest.mock("../models/User.js");
 jest.mock("argon2");
 
 let res = {
-    status: function(httpStatusCode){
-        expect(httpStatusCode).toBe(201);
-        return this; // chainable method
-    },
-    send: jest.fn((msg) => msg),
-    json: jest.fn((user) => user)
+  status: function (httpStatusCode) {
+    expect(httpStatusCode).toBe(201);
+    return this; // chainable method
+  },
+  send: jest.fn((msg) => msg),
+  json: jest.fn((user) => user),
 };
 let req = {
-    post_id: 12,
+  post_id: 12,
 };
 
 describe("test userController functions", () => {
-
-    it("should respond with 201 status on success", async () => {
-        await user.find.mockImplementationOnce(() => {
-            return true;
-        })
-        await userController.getUsers(req, res);
+  it("should respond with 201 status on success", async () => {
+    await user.find.mockImplementationOnce(() => {
+      return true;
     });
+    await userController.getUsers(req, res);
+  });
 });
 
 describe("test commentController functions", () => {
-    it("should respond with 201 on success", async () => {
-        await post.findById.mockImplementationOnce(() => {
-            return req.post_id;
-        });
-        await commentController.getAllComments(req, res);
+  it("should respond with 201 on success", async () => {
+    await post.findById.mockImplementationOnce(() => {
+      return req.post_id;
     });
+    await commentController.getAllComments(req, res);
+  });
 });
 
 describe("test postController functions", () => {
-    it("should respond with 201 status on success", async () => {
-        post.find.mockImplementationOnce(() => {
-            return true;
-        });
-
-        await postController.getAllPost(req, res);
+  it("should respond with 201 status on success", async () => {
+    post.find.mockImplementationOnce(() => {
+      return true;
     });
+
+    await postController.getAllPost(req, res);
+  });
 });

@@ -5,11 +5,11 @@ const comments = require("./comments.js");
 const setPostId = require("../../middleware/setPostId.js");
 
 /**
- * posts.js 
+ * posts.js
  * @desc Handles logic for post resource
  */
 
-router.get('/', postController.getAllPost);
+router.get("/", postController.getAllPost);
 
 router.get("/:id", postController.getPost);
 
