@@ -8,20 +8,14 @@ const app = express();
 // Setup .env
 dotenv.config();
 
-// Listen on specified port
 app.listen(process.env.PORT, () => {
     console.log(`Listening on port ${ process.env.PORT }`);
 });
 
-// Template Engine Setup
-app.set("views", "./views");
-
 app.use(cors());
 
-// Initial route
 app.use("/", routes);
 
-// Connect to db
 mongoUtil.connect(() => {});
 
 // Close all connections when the application recieves SIGINT signal

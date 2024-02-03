@@ -1,11 +1,5 @@
 const mongoose = require("mongoose");
 
-/*
- * postSchema
- * @desc Contains a reference to the posts collection in db
- * @export Class that allows us to interface with our posts
- */
-
   const postSchema = new mongoose.Schema({
     created_at: {
       type: Date,

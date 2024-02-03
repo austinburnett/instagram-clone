@@ -1,6 +1,5 @@
-const mongoose = require("mongoose");
 const argon2 = require("argon2");
-
+const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
   username: {
@@ -53,9 +52,9 @@ userSchema.statics.authenticate = async function(hash, pass) {
   } 
 }
 
-// NOTE: methods must be added to the schema before compiling it with mongoose.model()
-// Do not declare methods using ES6 arrow functions (=>). Arrow functions explicitly prevent binding this, so your method will not have access to the document 
-
-// Compile Schema && Export model
+/* NOTE: methods must be added to the schema before compiling it with mongoose.model()
+ * Do not declare methods using ES6 arrow functions (=>). Arrow functions explicitly 
+ * prevent binding this, so your method will not have access to the document.
+ */
 const user = mongoose.model("users", userSchema); 
 module.exports = user; 

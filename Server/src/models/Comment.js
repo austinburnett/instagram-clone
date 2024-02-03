@@ -1,10 +1,5 @@
 const mongoose = require("mongoose");
 
-/*
- * commentSchema
- * @desc Defines comment schema for embedding in Post Model
- */
-
 const commentSchema = new mongoose.Schema({
     username: {
         type: String,
