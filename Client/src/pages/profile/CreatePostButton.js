@@ -6,16 +6,14 @@ import { useNavigate } from "react-router-dom";
  * @desc Takes user to the create post page.
  */
 const CreatePostButton = () => {
-    const navigator = useNavigate();
+  const navigator = useNavigate();
 
-    function handleClick(){
-        navigator("/createpost");
-        console.log("Clicked!")
-    }
+  function handleClick() {
+    navigator("/createpost");
+    console.log("Clicked!");
+  }
 
-    return(
-        <button onClick={handleClick}>Create Post</button>
-    );
-}
+  return <button onClick={handleClick}>Create Post</button>;
+};
 
 export default CreatePostButton;

@@ -1,18 +1,18 @@
-.post{
-    border: 1px solid #cbcbcb;
-    display: block;
-    margin: 1rem;
-    min-width: 40rem;
-    min-height: 25rem;
+.post {
+  border: 1px solid #cbcbcb;
+  display: block;
+  margin: 1rem;
+  min-width: 40rem;
+  min-height: 25rem;
 }
-.post-heading{
-    text-align: right;
+.post-heading {
+  text-align: right;
 }
-img{
-    max-width: 300px;
-    max-height: 300px;
-    display: block;
+img {
+  max-width: 300px;
+  max-height: 300px;
+  display: block;
 }
-p{
-    display: inline-block;
+p {
+  display: inline-block;
 }

@@ -7,17 +7,17 @@ import CreatePost from "./pages/create-post/Create-Post.js";
 import "./App.css";
 
 function App() {
-    return (
-        <BrowserRouter>
-            <Routes>
-                <Route path="/login" element={<Login />} />
-                <Route path="/home" element={<Home />} />
-                <Route path="/profile/:userId" element={<Profile />} />
-                <Route path="/register" element={<Register />} />
-                <Route path="/createpost" element={<CreatePost />} />
-            </Routes>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/profile/:userId" element={<Profile />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/createpost" element={<CreatePost />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;

@@ -16,6 +16,7 @@
     "react-scripts": "5.0.1"
   },
   "scripts": {
+    "style": "prettier . --check",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
