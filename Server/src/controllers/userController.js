@@ -1,5 +1,5 @@
 const formidable = require("formidable");
-const user = require("../models/userModel");
+const user = require("../models/User.js");
 let jwt = require("jsonwebtoken");
 //const randomBytes = require("node:crypto").randomBytes;
 

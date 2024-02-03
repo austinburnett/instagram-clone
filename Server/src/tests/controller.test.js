@@ -1,11 +1,11 @@
 const userController = require("../controllers/userController.js");
 const commentController = require("../controllers/commentController.js");
 const postController = require("../controllers/postController.js");
-const user = require("../models/userModel.js");
-const post = require("../models/postModel.js");
+const user = require("../models/User.js");
+const post = require("../models/Post.js");
 
-jest.mock("../models/postModel.js");
-jest.mock("../models/userModel.js");
+jest.mock("../models/Post.js");
+jest.mock("../models/User.js");
 jest.mock("argon2");
 
 let res = {

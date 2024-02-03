@@ -1,5 +1,5 @@
-const post = require("../models/postModel.js");
-const comment = require("../models/commentModel.js");
+const post = require("../models/Post.js");
+const comment = require("../models/Comment.js");
 
 /*
  * commentController.js

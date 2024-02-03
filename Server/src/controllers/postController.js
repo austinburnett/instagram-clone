@@ -1,5 +1,5 @@
 const formidable = require("formidable");
-const post = require("../models/postModel");
+const post = require("../models/Post");
 
 /**
  * postController.js
