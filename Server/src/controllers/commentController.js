@@ -11,7 +11,6 @@ const comment = require("../models/Comment.js");
  * fix get comment by id - getComment
  */
 
-// Create comment for a given post _id
 exports.createComment = async (req, res) => {
     try{
         let currentPost = await post.findById(req.post_id);
@@ -40,8 +39,6 @@ exports.createComment = async (req, res) => {
     }
 }
 
-// Get all comments for a given post _id
-// @response array of json objects
 exports.getAllComments = async (req, res) => {
     try{
         const currentPost = await post.findById(req.post_id).populate("comments");
@@ -55,8 +52,6 @@ exports.getAllComments = async (req, res) => {
     }
 }
 
-// Get a comment for a given post _id
-// @response json object containg comment
 exports.getComment = async (req, res) => {
     try{
         const desiredComment = await post.findById(req.post_id).populate({
@@ -115,8 +110,6 @@ exports.updateComment = async (req, res) => {
     }
 }
 
-// Delete comment on a given post w/ _id
-// @response Result of comment deletion
 exports.deleteComment = async (req, res) => {
     try{
 

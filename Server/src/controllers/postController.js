@@ -1,5 +1,6 @@
 const formidable = require("formidable");
-const post = require("../models/Post");
+
+const post = require("../models/Post.js");
 
 /**
  * postController.js
@@ -12,7 +13,6 @@ const post = require("../models/Post");
  * check if user matches post owner
  */ 
 
-// Create Post
 exports.createPost = (req, res) => {
     const form = formidable();
     form.parse(req, async (formErr, fields) => {
@@ -37,7 +37,6 @@ exports.createPost = (req, res) => {
     });
 }
 
-// Get Post by id
 exports.getPost = async (req, res) => {
     try{
         const currPost = await post.findById(req.params.id).populate("comments");
@@ -51,7 +50,6 @@ exports.getPost = async (req, res) => {
     } 
 }
 
-// Get All Posts
 exports.getAllPost = async (req, res) => {
     try{
         let posts = null;
@@ -103,7 +101,6 @@ exports.updatePost = async (req, res) => {
   });
 }
 
-// Delete Post
 exports.deletePost = async (req, res) => {
     try{
         // need to check if post was actually found
@@ -119,7 +116,6 @@ exports.deletePost = async (req, res) => {
     } 
 }
 
-// Like Post
 exports.likePost = async (req, res) => {
     try{
         post.findOne({

@@ -1,15 +1,16 @@
 const express = require("express");
 const router = express.Router();
-const users = require("./api/users");
-const posts = require("./api/posts");
-const userController = require("../controllers/userController");
-const isAuthenticated = require("../middleware/isAuthenticated").isAuthenticated;
+
+const users = require("./api/users.js");
+const posts = require("./api/posts.js");
+const userController = require("../controllers/userController.js");
+const isAuthenticated = require("../middleware/isAuthenticated.js").isAuthenticated;
 
 // Login form 
-router.post("/login", userController.loginForm);
+router.post("/login", userController.login);
 
 // Create User, Register form 
-router.post("/register", userController.registerForm);
+router.post("/register", userController.register);
 
 // Mount authorization middleware before api
 router.use(isAuthenticated);

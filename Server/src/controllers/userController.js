@@ -1,6 +1,7 @@
 const formidable = require("formidable");
-const user = require("../models/User.js");
 let jwt = require("jsonwebtoken");
+
+const user = require("../models/User.js");
 //const randomBytes = require("node:crypto").randomBytes;
 
 /**
@@ -10,12 +11,7 @@ let jwt = require("jsonwebtoken");
  * Secret for signing jwt
  */ 
 
-/** 
- * loginForm
- * @desc Handles login for a user 
- * @response { Token } JWT on success   
- */
-exports.loginForm = (req, res, next) => {    
+exports.login = (req, res, next) => {    
   const form = formidable();
   form.parse(req, async (formErr, fields) => {
     if(formErr) {
@@ -50,11 +46,7 @@ exports.loginForm = (req, res, next) => {
   });
 }
 
-/**
- * registerForm
- * @desc Handles creating a new user. 
- */
-exports.registerForm = (req, res, next) => {    
+exports.register = (req, res, next) => {    
   const form = formidable();
   form.parse(req, async (formErr, fields) => {
     if(formErr) {
@@ -76,16 +68,11 @@ exports.registerForm = (req, res, next) => {
   });
 }
 
-/**
- * getUsers
- * @desc Retrieves all users stored in db
- */
-exports.getUsers = async (req, res) => {
+exports.getAllUsers = async (req, res) => {
   const users = await user.find();
   res.status(200).json({ users });
 }
 
-// Get user by id
 exports.getUser = async (req, res) => {
     try{
         const queryUser = await user.findById(req.params.id);

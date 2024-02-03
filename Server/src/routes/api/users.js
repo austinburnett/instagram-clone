@@ -4,19 +4,15 @@ const userController = require("../../controllers/userController");
 
 /**
  * users.js 
- * @desc Handles routes for user resources
+ * @desc Handles logic for user resource
  */
 
-// Get ALL users
-router.get('/', userController.getUsers);
+router.get('/', userController.getAllUsers);
 
-// Get user by id
 router.get("/:id", userController.getUser);
 
-// Update user
 router.patch("/:id", userController.updateUser);
 
-// Delete user
 router.delete("/:id", userController.deleteUser);
 
 module.exports = router;
