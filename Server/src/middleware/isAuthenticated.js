@@ -4,13 +4,13 @@ exports.isAuthenticated = (req, res, next) => {
   let bearerToken = req.headers["authorization"];
 
   if (typeof bearerToken == "undefined") {
-    res.status(401).send("Token is undefined");
+    res.status(401).json("Token is undefined");
   } else if (bearerToken.split(" ")[0] == "Bearer") {
     let token = bearerToken.split(" ")[1];
 
     jwt.verify(token, process.env.SECRET, (err, decoded) => {
       if (err) {
-        res.status(401).send("Token not verified");
+        res.status(401).json("Token not verified");
         throw err;
       } else {
         req.userId = decoded.audience;
@@ -21,6 +21,6 @@ exports.isAuthenticated = (req, res, next) => {
       next();
     });
   } else {
-    res.status(401).send("Error authenticating Token");
+    res.status(401).json("Error authenticating Token");
   }
 };
