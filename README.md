@@ -11,3 +11,6 @@ Features Included:
 
 ## Getting Started
 - Instructions on running the project locally: [/Server/README.md](https://github.com/austinburnett/webapp-backend/blob/master/Server/README.md)
+
+# Extensions
+- WebSockets
