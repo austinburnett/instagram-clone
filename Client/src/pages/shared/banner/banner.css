@@ -1,34 +1,37 @@
-/* Remove default settings */
-ul,
-li {
+.banner {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-items: center;
+  justify-content: space-around;
+  background-color: white;
+  flex-wrap: wrap;
+}
+
+.banner ul {
   border: 0;
   margin: 0;
   padding: 0;
+}
+
+.banner li {
+  display: inline-block;
+  border: 0;
+  margin: 0;
+  padding: .5rem;
   list-style-type: none;
 }
 
-a {
+.banner a {
+  display: block;
   text-decoration: none;
 }
 
-/* HEADER WITH NAV BAR */
-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-items: center;
-  background-color: white;
+.banner a:hover {
+  background-color: green;
 }
 
-header li {
-  display: inline-block;
-}
-
-header a {
-  color: black;
-  border-bottom: 2px solid #cbcbcb;
-}
-
-header a:hover {
-  background-color: black;
+.banner .logo-small{
+  max-width: 90px;
+  max-height: 50px;
 }

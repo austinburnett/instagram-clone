@@ -4,7 +4,6 @@ import axios from "axios";
 import "./login.css";
 
 const Login = () => {
-  // States
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [alert, setAlert] = useState("");
@@ -30,10 +29,8 @@ const Login = () => {
     axios(config)
       .then(function (response) {
         if (response.status == 200) {
-          //console.log(response);
           localStorage.setItem("jwt", response.data.token);
           setAlert("");
-          // Don't set this route in stone
           navigate("/home");
         }
       })
@@ -85,5 +82,4 @@ const Login = () => {
   );
 };
 
-// Login is entrypoint
 export default Login;

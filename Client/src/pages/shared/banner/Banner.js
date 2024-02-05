@@ -1,10 +1,10 @@
-import React, { useState } from "react";
 import { jwtDecode } from "jwt-decode";
 
 import "./banner.css";
 import homeImage from "../assets/home.png";
 import userImage from "../assets/user-profile.png";
 import createPostImage from "../assets/create-post-button.png";
+import logo from "../assets/small-logo.svg";
 
 const Banner = () => {
   let decodedToken = localStorage.jwt;
@@ -15,8 +15,11 @@ const Banner = () => {
   }
 
   return (
-    <header>
+    <header className="banner">
       {/* <a href="https://www.flaticon.com/free-icons/home"> </a> */}
+      <div className="logo-small">
+        <img src={logo} />
+      </div>
       <ul>
         <li>
           <a href="/home">
