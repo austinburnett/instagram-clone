@@ -38,7 +38,9 @@ const Post = ({
         <br />
         <p>{postCaption}</p>
         <br />
-        <ul id={"comments-" + uid}>{commentsList}</ul>
+        <div className="comment-list">
+          <ul id={"comments-" + uid}>{commentsList}</ul>
+        </div>
       </div>
     </>
   );
