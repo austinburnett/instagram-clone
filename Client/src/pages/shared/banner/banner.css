@@ -18,7 +18,7 @@
   display: inline-block;
   border: 0;
   margin: 0;
-  padding: .5rem;
+  padding: 0.5rem;
   list-style-type: none;
 }
 
@@ -28,10 +28,10 @@
 }
 
 .banner a:hover {
-  background-color: green;
+  background-color: #503e6d;
 }
 
-.banner .logo-small{
+.banner .logo-small {
   max-width: 90px;
-  max-height: 50px;
+  max-height: 60px;
 }

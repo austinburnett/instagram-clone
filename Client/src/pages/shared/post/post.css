@@ -2,18 +2,41 @@
   border: 1px solid #cbcbcb;
   display: block;
   margin: 1rem;
-  min-width: 40rem;
+  min-width: 30rem;
   min-height: 25rem;
   background-color: #503e6d;
+  border-radius: 10px;
 }
 .post-heading {
   text-align: right;
 }
-img {
-  max-width: 300px;
-  max-height: 300px;
+.post p {
+  display: block;
+  margin: 0.5rem;
+}
+.post-creator {
+  margin: 0.5rem;
+  color: white;
+}
+.post img {
+  width: 600px;
+  height: 600px;
   display: block;
 }
-p {
-  display: inline-block;
+.post a {
+  display: block;
+
+  width: 600px;
+  height: 600px;
+}
+.post-buttons {
+  text-align: left;
+}
+.comment-list ul {
+  flex-direction: column;
+}
+.comment-list li {
+  text-decoration: none;
+  list-style-type: none;
+  text-align: left;
 }

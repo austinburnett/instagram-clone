@@ -31,13 +31,13 @@ const Post = ({
   return (
     <>
       <div className="post">
-        <p>{postUser}</p>
+        <p className="post-creator">{postUser}</p>
         <PostImage image={postImage} postCreatorUri={postUser} />
-        <PostLikeButton postId={postId} likes={usersLiked} />
-        <PostCommentButton postId={postId} id={uid} />
-        <br />
+        <div className="post-buttons">
+          <PostLikeButton postId={postId} likes={usersLiked} />
+          <PostCommentButton postId={postId} id={uid} />
+        </div>
         <p>{postCaption}</p>
-        <br />
         <div className="comment-list">
           <ul id={"comments-" + uid}>{commentsList}</ul>
         </div>

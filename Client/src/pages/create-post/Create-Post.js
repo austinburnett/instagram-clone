@@ -28,7 +28,6 @@ const CreatePost = () => {
     };
     console.log(data);
 
-    // Modify baseURL to be a env var
     let request = {
       method: "post",
       baseURL: "http://localhost:3000/posts",
@@ -57,26 +56,16 @@ const CreatePost = () => {
   }
   return (
     <main>
-      <div className="blank"></div>
-      <div className="register">
+      <div className="create-post">
         <div className="logo"></div>
-        <br></br>
-        <br></br>
         <form onSubmit={(event) => handleSubmit(event)}>
-          <br></br>
           <input
             onChange={(event) => setCaption(event.target.value)}
             placeholder="Caption"
           ></input>
-          <br></br>
           <input onChange={(event) => setImage(event.target.value)}></input>
-          <br></br>
-          <br></br>
           <button>Create Post</button>
           <p>{alert}</p>
-          <br></br>
-          <br></br>
-          <br></br>
         </form>
       </div>
     </main>

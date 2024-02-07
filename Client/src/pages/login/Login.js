@@ -40,34 +40,22 @@ const Login = () => {
       });
   }
   return (
-    <main>
-      <div className="blank"></div>
-      <div>
-        <div className="login">
-          <div className="logo"></div>
-          <br></br>
-          <br></br>
-          <form onSubmit={(event) => handleSubmit(event)}>
-            <input
-              onChange={(event) => setEmail(event.target.value)}
-              placeholder="Email"
-            ></input>
-            <br></br>
-            <br></br>
-            <input
-              onChange={(event) => setPassword(event.target.value)}
-              placeholder="Password"
-            ></input>
-            <br></br>
-            <br></br>
-            <br></br>
-            <button>Log in</button>
-            <p>{alert}</p>
-            <br></br>
-            <br></br>
-            <br></br>
-          </form>
-        </div>
+    <div className="login-wrapper">
+      <div className="login">
+        <div className="logo"></div>
+        <form onSubmit={(event) => handleSubmit(event)}>
+          <input
+            onChange={(event) => setEmail(event.target.value)}
+            placeholder="Email"
+          ></input>
+          <input
+            onChange={(event) => setPassword(event.target.value)}
+            placeholder="Password"
+            type="password"
+          ></input>
+          <button>Log in</button>
+          <p>{alert}</p>
+        </form>
         <div className="signup">
           <p>
             {" "}
@@ -78,7 +66,7 @@ const Login = () => {
           </p>
         </div>
       </div>
-    </main>
+      </div>
   );
 };
 
