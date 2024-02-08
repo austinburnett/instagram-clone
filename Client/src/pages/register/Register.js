@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+
 import "./register.css";
+import logo from "../shared/assets/instaclone-logo.svg";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -45,27 +47,29 @@ const Register = () => {
       });
   }
   return (
-      <div className="register-wrapper">
-        <div className="register">
-          <div className="logo"></div>
-          <form onSubmit={(event) => handleSubmit(event)}>
-            <input
-              onChange={(event) => setEmail(event.target.value)}
-              placeholder="Email"
-            ></input>
-            <input
-              onChange={(event) => setUsername(event.target.value)}
-              placeholder="Username"
-            ></input>
-            <input
-              onChange={(event) => setPassword(event.target.value)}
-              placeholder="Password"
-            ></input>
-            <button>Sign up</button>
-            <p>{alert}</p>
-          </form>
+    <div className="register-wrapper">
+      <div className="register">
+        <div className="logo-large">
+          <img src={logo}/>
         </div>
+        <form onSubmit={(event) => handleSubmit(event)}>
+          <input
+            onChange={(event) => setEmail(event.target.value)}
+            placeholder="Email"
+          ></input>
+          <input
+            onChange={(event) => setUsername(event.target.value)}
+            placeholder="Username"
+          ></input>
+          <input
+            onChange={(event) => setPassword(event.target.value)}
+            placeholder="Password"
+          ></input>
+          <button>Sign up</button>
+          <p>{alert}</p>
+        </form>
       </div>
+    </div>
   );
 };
 

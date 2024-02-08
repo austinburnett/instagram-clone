@@ -1,6 +1,6 @@
 # instagram-clone
 
-instagram-clone was built for the purpose of expanding my skills in backend develeopment and cloud technologies. I've implemented some, but not all, of the core features provided provided by Instagram.
+instagram-clone was built for the purpose of exercising how backend API's can be utilized on the client side. I've implemented some, but not all, of the core features provided provided by Instagram.
 
 Features Included:
 - Authentication/Authorization with JWT

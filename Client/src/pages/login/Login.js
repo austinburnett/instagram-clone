@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+
 import "./login.css";
+import logo from "../shared/assets/instaclone-logo.svg";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -42,7 +44,9 @@ const Login = () => {
   return (
     <div className="login-wrapper">
       <div className="login">
-        <div className="logo"></div>
+        <div className="logo-large">
+          <img src={logo} />
+        </div>
         <form onSubmit={(event) => handleSubmit(event)}>
           <input
             onChange={(event) => setEmail(event.target.value)}

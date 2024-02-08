@@ -49,7 +49,7 @@ const Home = () => {
   return (
     <>
       <Banner />
-      <main>{posts}</main>
+      <main className="posts">{posts}</main>
     </>
   );
 };
