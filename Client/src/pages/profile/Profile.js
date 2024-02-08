@@ -64,9 +64,7 @@ const Profile = () => {
           <div style={createPostButtonStyle}>
             <CreatePostButton />
           </div>
-          <div className="post-images">
-            {posts}
-          </div>
+          <div className="post-images">{posts}</div>
         </div>
       </main>
     </>

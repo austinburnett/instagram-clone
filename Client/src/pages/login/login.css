@@ -1,4 +1,4 @@
-.login-wrapper{
+.login-wrapper {
   display: flex;
   justify-content: center;
   min-width: 100%;
@@ -17,11 +17,11 @@
   background-color: white;
 }
 
-.login img{
+.login img {
   margin: 1rem;
 }
 
-.login form{
+.login form {
   padding: 1rem;
 }
 

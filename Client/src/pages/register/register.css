@@ -1,4 +1,4 @@
-.register-wrapper{
+.register-wrapper {
   display: flex;
   justify-content: center;
   min-width: 100%;
@@ -16,11 +16,11 @@
   background-color: white;
 }
 
-.register img{
+.register img {
   margin: 1rem;
 }
 
-.login form{
+.login form {
   padding: 1rem;
 }
 

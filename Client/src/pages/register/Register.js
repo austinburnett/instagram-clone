@@ -50,7 +50,7 @@ const Register = () => {
     <div className="register-wrapper">
       <div className="register">
         <div className="logo-large">
-          <img src={logo}/>
+          <img src={logo} />
         </div>
         <form onSubmit={(event) => handleSubmit(event)}>
           <input
